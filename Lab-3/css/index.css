@@ -1,0 +1,96 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+header {
+    background-color: #f5f5f7;
+    border-bottom: 1px solid #c6c6c8;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.title {
+    padding: 5px;
+    margin: 5px;
+    font-size: 21px;
+    color: #EDBB00;
+}
+
+.profile {
+    padding: 5px;
+    margin: 5px;
+}
+
+img {
+    border-radius: 50%;
+    height: 28px;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+.choose {
+    width: 250px;
+    height: 810px;
+    border-right: 0.5px solid #c6c6c8;
+    align-items: center;
+}
+
+.choose button {
+    padding: 10px;
+    margin: 10px;
+    width: 230px;
+    height: 40px;
+    border: 0.5px solid gray;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
+.notes {
+    width: 350px;
+    height: 810px;
+    border-right: 0.5px solid #c6c6c8;
+    display: flex;
+    justify-content: center;
+}
+
+.notes button {
+    padding: 10px;
+    margin: 10px;
+    width: 280px;
+    height: 40px;
+    border: 0.5px solid gray;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
+.note {
+    padding: 10px;
+    width: 890px;
+    background-color: white;
+}
+
+.note-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.note-date {
+    padding: 10px;
+    text-align: center;
+}
+
+.note button {
+    width: 25px;
+}
