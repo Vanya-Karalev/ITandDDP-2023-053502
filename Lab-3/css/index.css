@@ -7,7 +7,7 @@
 }
 
 header {
-    background-color: #f5f5f7;
+    background-color: #e1e1e1;
     border-bottom: 1px solid #c6c6c8;
     display: flex;
     flex-direction: row;
@@ -15,143 +15,176 @@ header {
 }
 
 .header-title {
-    padding: 5px;
-    margin: 5px;
+    padding: 10px;
+    margin: 10px;
     font-size: 21px;
-    color: #EDBB00;
 }
 
 .header-profile {
     flex-direction: row;
     display: flex;
-    padding: 5px;
-    margin: 5px;
+    padding: 10px;
+    margin: 10px;
     align-items: center;
     align-content: center;
 }
 
-.header-profile-img {
-    margin-left: 1rem;
-    position: relative;
-    display: inline-block;
+.container-header{
+    padding: 20px;
+    border-bottom: 1px solid black;
 }
 
-.header-profile-dropdown-img {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    right: 0;
+.container-add-note {
+    flex-direction: row;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    align-content: center;
 }
-  
-.header-profile-dropdown-img a {
-    color: black;
-    padding: 12px 16px;
+
+.input-note {
+    width: 100%;
+    margin-right: 1rem;
+}
+
+.add-button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: left;
     text-decoration: none;
-    display: block;
-}
-  
-.header-profile-dropdown-img a:hover {
-    background-color: #f1f1f1
-}
-  
-.header-profile-img:hover .header-profile-dropdown-img {
-    display: block;
-}
-
-
-img {
-    border-radius: 50%;
-    height: 28px;
-}
-
-body {
-    background-color: whitesmoke;
-}
-
-.main {
-    display: flex;
-    /* flex-direction: row; */
-}
-
-.choose {
-    width: 250px;
-    height: 810px;
-    border-right: 0.5px solid #c6c6c8;
-    /* align-items: center; */
-}
-
-.choose button {
-    padding: 10px;
-    margin: 10px;
-    width: 230px;
-    height: 40px;
-    border: 0.5px solid gray;
-    border-radius: 5px;
-    font-size: 17px;
-}
-
-.notes {
-    width: 350px;
-    height: 810px;
-    border-right: 0.5px solid #c6c6c8;
-    display: flex;
-    justify-content: center;
-}
-
-.notes-search{
-    margin: 10px; 
-    height: 30px; 
-    width: 100%;
+    display: inline-block;
+    font-size: 16px;
     border-radius: 10px;
-    border: solid gray;
-}
-
-.notes button {
-    padding: 10px;
-    margin: 10px;
-    width: 280px;
-    height: 40px;
-    border: 0.5px solid gray;
-    border-radius: 5px;
-    font-size: 17px;
-}
-
-.note {
-    padding: 10px;
     width: 100%;
-    background-color: white;
 }
 
-.note-header {
+.create-button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+  
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 25px;
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+}
+
+.modal-content-header {
     display: flex;
-    /* flex-direction: row; */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.modal-main-content {
+    padding-top: 10px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.container-current-notes-header {
+    padding: 20px;
+    border-bottom: 1px solid black;
+}
+
+.container-current-notes {
+    flex-direction: row;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    align-content: center;
+}
+
+.container-current-note {
+    list-style-type: none; 
+    align-items: center;
+    align-content: center;
     justify-content: space-between;
 }
 
-.note-date {
-    padding: 10px;
-    text-align: center;
+.container-current-note-text {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
 }
 
-.note button {
-    width: 25px;
+.edit {
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+.container-completed-notes-header {
+    padding: 20px;
+    border-bottom: 1px solid black;
+}
+
+.container-completed-notes {
+    flex-direction: row;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    align-content: center;
+}
+
+.container-completed-note {
+    list-style-type: none; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.container-completed-note-text {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
 }
 
 a {
     text-decoration: none;
-}
-
-input:focus {
-    outline: none;
-}
-
-textarea:focus {
-    outline: none;
-}
-
-select:focus {
-    outline: none;
 }

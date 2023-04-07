@@ -2,81 +2,99 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/index.css">
-    <script src="index.js"></script>
-    <title>Notes</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen" charset="utf-8">
+    <title>To-Do</title>
 </head>
+
 <body>
     <header>
         <div class="header-title">
-            <a href="index.html">Заметки</a>
+            <a href="index.html">To-Do</a>
         </div>
         <div class="header-profile">
-            <div class="header-profile-links">
-                <a href="html/SignIn.html">Sign In</a>
-                <a href="html/SignUp.html">Sign Up</a>
-            </div>
-            <div class="header-profile-img">
-                <img src="src/hyoko.JPG">
-                <div class="header-profile-dropdown-img">
-                  <a>vankaralev@mail.ru</a>
-                  <a href="#" style="color: red;">Выйти</a>
-                </div>
-            </div>
+            <a href="html/SignIn.html" style="margin-left: 1rem;">Sign In</a>
+            <a href="html/SignUp.html" style="margin-left: 1rem;">Sign Up</a>
+            <a href="#" style="margin-left: 1rem;">Exit</a>
+            <a style="margin-left: 1rem;">username</a>
         </div>
     </header>
-    <div class="main">
-        <!-- <div class="choose">
-            <button>Заметки</button>
-            <button>Недавно удаленные</button>
+    <div class="container">
+        <!-- <div class="container-header">
+            <p>Add new item</p>
         </div> -->
-        <div class="notes">
-            <input class="notes-search" type="text" placeholder="Поиск по всем заметкам">
-            <div>
+        <div class="container-add-note">
+            <button id="myBtn" class="add-button">+ Add new task</button>
+        </div>
 
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-content-header">
+                    <div>
+                        <h2>New Task</h2>
+                    </div>
+                    <div>
+                        <span class="close">&times;</span>
+                    </div>
+                </div>
+                <div class="modal-main-content">
+                    <p style="margin-bottom: 5px;">Title</p>
+                    <input type="text" style="width: calc(100% - 20px); height: 30px; font-size: 15px; padding: 0 10px 0 10px;">
+                    <p style="margin: 15px 0 5px 0;">Details (notes)</p>
+                    <textarea placeholder="Important details of your task..." style="width: calc(100% - 20px); min-height: 20px; height: 200px; font-size: 15px; border-radius: 5px; resize: vertical; padding: 10px;" dir="auto"></textarea>
+                    <p style="margin: 15px 0 5px 0;">Due date</p>
+                    <input type="date" autocomplete="off" style="border: none; border-radius: 10px; padding: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); font-size: 16px; color: #333; background-color: #f5f5f5; outline: none;">
+                    <button class="create-button">Create task</button>
+                </div>
             </div>
         </div>
-        <div class="note">
-            <div class="note-header">
-                <div>
-                    <img src="src/trash-can-svgrepo-com.svg">
-                </div>
-                <div>
-                    <img src="src/bold-svgrepo-com.svg">
-                    <img src="src/italic-svgrepo-com.svg">
-                    <img src="src/underline-01-svgrepo-com.svg">
-                    <img src="src/strikethrough-svgrepo-com.svg">
-                </div>
-                <div>
-                    <select style="border: 0;">
-                        <option>Название</option>
-                        <option>Заголовок</option>
-                        <option>Подзаголовок</option>
-                        <option selected>Текст</option>
-                    </select>
-                    <!-- <div class="header-profile-img">
-                        <img src="src/textformat-alt-svgrepo-com.svg">
-                        <div class="header-profile-dropdown-img">
-                            <img src="src/bold-svgrepo-com.svg">
-                            <img src="src/italic-svgrepo-com.svg">
-                            <img src="src/underline-01-svgrepo-com.svg">
-                            <img src="src/strikethrough-svgrepo-com.svg">
+
+        <div class="container-current-notes-header">
+            <h3>To-Do</h3>
+        </div>
+        <div class="container-current-notes">
+            <ul style="width: 100%;">
+                <li class="container-current-note" style="background-color: whitesmoke; height: auto; padding: 0.6rem 1rem 0.6rem 1rem; border-radius: 10px;">
+                    <div style="display: flex; flex-direction: row; align-items: center; align-content: center; justify-content: space-between;">
+                        <div class="container-current-note-text">
+                            <input type="checkbox" style="margin-right: 1rem;">
+                            <p style="margin-right: 1rem;">Pay Bills</p>
+                            <button id="button-down"><span class="down">&#8595;</span></button>
                         </div>
-                    </div> -->
-                    <!-- <img src="src/textformat-alt-svgrepo-com.svg"> -->
-                    <img src="src/checklist-checkmark-done-svgrepo-com.svg">
-                </div>
-                <div>
-                    <img src="src/pen-to-square-svgrepo-com.svg">
-                </div>
-            </div>
-            <div class="note-date">
-                <a>April 1, 2023 at 2:09 PM</a>
-            </div>
-            <div>
-                <textarea style="width: 100%; height: 700px; border: 0; resize: none; font-size: 15px;" dir="auto"></textarea>
-            </div>
+                        <div class="container-current-note">
+                            <span class="date" style="font-size: 10px; margin-left: 1rem;">No date</span>
+                            <span class="edit">&#9998;</span>
+                            <span class="delete">&#128465;</span>
+                        </div>
+                    </div>
+                    <div id="more-info" style="display:none; margin-left: 1.8rem; margin-top: 0.25rem;">
+                        <p style="font-size: 13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula quam velit, quis accumsan enim malesuada in. Aenean ultricies nibh a ex commodo consequat. Nulla facilisi. Nullam tincidunt elementum mauris, sed sodales leo malesuada eget. Phasellus scelerisque libero vel massa interdum, sed suscipit libero fringilla. Maecenas eget dui varius, blandit orci eget, dapibus dolor. Sed a diam tincidunt, aliquet tellus sed, faucibus lectus. Nulla in semper nunc, quis vestibulum augue.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="container-completed-notes-header">
+            <h3>Completed</h3>
+        </div>
+        <div class="container-completed-notes">
+            <ul style="width: 100%;">
+                <li class="container-completed-note" style="background-color: whitesmoke; height: 40px; border-radius: 10px;">
+                    <div class="container-completed-note-text">
+                        <input type="checkbox" style="margin-right: 1rem; margin-left: 1rem;" checked>
+                        <p style="margin-right: 1rem; text-decoration: line-through;">Pay Bills</p>
+                    </div>
+                    <div class="container-completed-note" style="margin-right: 1rem;">
+                        <span class="date" style="font-size: 10px;">Fri Apr 07, 2023</span>
+                        <span class="edit">&#9998;</span>
+                        <span class="delete">&#128465;</span>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </body>
+<script src="js/index.js"></script>
 </html>
