@@ -35,9 +35,9 @@ This project will have functionality of Time-management app like ToDoist with fu
 ---
 
 ##  Project Mock Up:
-<img width="1512" alt="image" src="https://user-images.githubusercontent.com/74813089/230518069-43dcc205-08c2-4ea2-a7fc-2d4085c01159.png">
-<img width="1512" alt="image" src="https://user-images.githubusercontent.com/74813089/230518097-35e13a84-bb72-4bbc-add0-1e489fa6187f.png">
-<img width="1512" alt="image" src="https://user-images.githubusercontent.com/74813089/230518144-3dafb222-4aa8-4f22-97fa-347befbb175a.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/74813089/230518581-4fc72b38-6b9c-4d04-aba2-1586c002abf4.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/74813089/230518493-d44c0d54-1677-4345-a522-8db6ba8a7fcf.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/74813089/230518644-9ac4d02d-3168-45b3-a16b-40098dd5644b.png">
 
 
 ---
