@@ -3,6 +3,7 @@
 * {
     padding: 0px;
     margin: 0px;
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -13,17 +14,53 @@ header {
     justify-content: space-between;
 }
 
-.title {
+.header-title {
     padding: 5px;
     margin: 5px;
     font-size: 21px;
     color: #EDBB00;
 }
 
-.profile {
+.header-profile {
+    flex-direction: row;
+    display: flex;
     padding: 5px;
     margin: 5px;
+    align-items: center;
+    align-content: center;
 }
+
+.header-profile-img {
+    margin-left: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.header-profile-dropdown-img {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+  
+.header-profile-dropdown-img a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+.header-profile-dropdown-img a:hover {
+    background-color: #f1f1f1
+}
+  
+.header-profile-img:hover .header-profile-dropdown-img {
+    display: block;
+}
+
 
 img {
     border-radius: 50%;
@@ -36,14 +73,14 @@ body {
 
 .main {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
 }
 
 .choose {
     width: 250px;
     height: 810px;
     border-right: 0.5px solid #c6c6c8;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .choose button {
@@ -64,6 +101,14 @@ body {
     justify-content: center;
 }
 
+.notes-search{
+    margin: 10px; 
+    height: 30px; 
+    width: 100%;
+    border-radius: 10px;
+    border: solid gray;
+}
+
 .notes button {
     padding: 10px;
     margin: 10px;
@@ -76,13 +121,13 @@ body {
 
 .note {
     padding: 10px;
-    width: 890px;
+    width: 100%;
     background-color: white;
 }
 
 .note-header {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: space-between;
 }
 
@@ -93,4 +138,20 @@ body {
 
 .note button {
     width: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+select:focus {
+    outline: none;
 }

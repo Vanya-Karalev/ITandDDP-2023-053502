@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/index.css">
+    <script src="index.js"></script>
     <title>Notes</title>
 </head>
 <body>
     <header>
-        <div class="title">
-            <a>Заметки</a>
+        <div class="header-title">
+            <a href="index.html">Заметки</a>
         </div>
-        <div class="profile">
-            <a href="html/SignIn.html">Sign In</a>
-            <a href="html/SignUp.html">Sign Up</a>
-            <img src="../../../Downloads/hyoko.JPG">
+        <div class="header-profile">
+            <div class="header-profile-links">
+                <a href="html/SignIn.html">Sign In</a>
+                <a href="html/SignUp.html">Sign Up</a>
+            </div>
+            <div class="header-profile-img">
+                <img src="src/hyoko.JPG">
+                <div class="header-profile-dropdown-img">
+                  <a>vankaralev@mail.ru</a>
+                  <a href="#" style="color: red;">Выйти</a>
+                </div>
+            </div>
         </div>
     </header>
     <div class="main">
-        <div class="choose">
+        <!-- <div class="choose">
             <button>Заметки</button>
             <button>Недавно удаленные</button>
-        </div>
+        </div> -->
         <div class="notes">
-            <button>Поиск по всем заметкам</button>
+            <input class="notes-search" type="text" placeholder="Поиск по всем заметкам">
             <div>
 
             </div>
@@ -30,18 +39,42 @@
         <div class="note">
             <div class="note-header">
                 <div>
-                    <img src="../../../Downloads/trash-can-svgrepo-com.svg">
+                    <img src="src/trash-can-svgrepo-com.svg">
                 </div>
                 <div>
-                    <img src="../../../Downloads/textformat-alt-svgrepo-com.svg">
-                    <img src="../../../Downloads/checklist-checkmark-done-svgrepo-com.svg">
+                    <img src="src/bold-svgrepo-com.svg">
+                    <img src="src/italic-svgrepo-com.svg">
+                    <img src="src/underline-01-svgrepo-com.svg">
+                    <img src="src/strikethrough-svgrepo-com.svg">
                 </div>
                 <div>
-                    <img src="../../../Downloads/pen-to-square-svgrepo-com.svg">
+                    <select style="border: 0;">
+                        <option>Название</option>
+                        <option>Заголовок</option>
+                        <option>Подзаголовок</option>
+                        <option selected>Текст</option>
+                    </select>
+                    <!-- <div class="header-profile-img">
+                        <img src="src/textformat-alt-svgrepo-com.svg">
+                        <div class="header-profile-dropdown-img">
+                            <img src="src/bold-svgrepo-com.svg">
+                            <img src="src/italic-svgrepo-com.svg">
+                            <img src="src/underline-01-svgrepo-com.svg">
+                            <img src="src/strikethrough-svgrepo-com.svg">
+                        </div>
+                    </div> -->
+                    <!-- <img src="src/textformat-alt-svgrepo-com.svg"> -->
+                    <img src="src/checklist-checkmark-done-svgrepo-com.svg">
+                </div>
+                <div>
+                    <img src="src/pen-to-square-svgrepo-com.svg">
                 </div>
             </div>
             <div class="note-date">
                 <a>April 1, 2023 at 2:09 PM</a>
+            </div>
+            <div>
+                <textarea style="width: 100%; height: 700px; border: 0; resize: none; font-size: 15px;" dir="auto"></textarea>
             </div>
         </div>
     </div>
