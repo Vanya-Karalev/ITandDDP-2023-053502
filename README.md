@@ -3,7 +3,7 @@
 
 # Selected Topic: Time-management app
 ```
-This project will have functionality of Time-management app like Apple Notes with functionality inherent in similar projects.
+This project will have functionality of Time-management app like ToDoist with functionality inherent in similar projects.
 ```
 
 ---
@@ -11,8 +11,9 @@ This project will have functionality of Time-management app like Apple Notes wit
 ##  Functions:
 ```
 1. Login and register
-2. Search for notes
-3. Create new notes
+2. Create new note
+3. Update note
+4. Delete note
 ```
 
 ---
@@ -22,7 +23,6 @@ This project will have functionality of Time-management app like Apple Notes wit
 1. User Model
   - Id
   - Username
-  - Email
   - Password
 
 2. Note Model
@@ -35,8 +35,9 @@ This project will have functionality of Time-management app like Apple Notes wit
 ---
 
 ##  Project Mock Up:
-<img width="797" alt="image" src="https://user-images.githubusercontent.com/74813089/228974635-18855be5-d85e-4dbe-9cc3-7e3a13b5caa6.png">
-<img width="796" alt="image" src="https://user-images.githubusercontent.com/74813089/228974728-f90db93f-0e83-451a-9819-2167bfcedb19.png">
-<img width="797" alt="image" src="https://user-images.githubusercontent.com/74813089/228974806-760d236c-50d9-4e3c-bdac-3a08724faf68.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/74813089/230518069-43dcc205-08c2-4ea2-a7fc-2d4085c01159.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/74813089/230518097-35e13a84-bb72-4bbc-add0-1e489fa6187f.png">
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/74813089/230518144-3dafb222-4aa8-4f22-97fa-347befbb175a.png">
+
 
 ---
