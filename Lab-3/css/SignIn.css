@@ -6,8 +6,12 @@
     font-family: 'Roboto', sans-serif;
 }
 
+body {
+    background-color:whitesmoke;
+}
+
 header {
-    background-color: #e1e1e1;
+    background-color: rgb(233, 233, 233);
     border-bottom: 1px solid #c6c6c8;
     display: flex;
     flex-direction: row;
@@ -20,7 +24,7 @@ header {
     font-size: 21px;
 }
 
-.header-profile {
+.header-links {
     flex-direction: row;
     display: flex;
     padding: 10px;
@@ -29,64 +33,169 @@ header {
     align-content: center;
 }
 
-body {
-    background-color: whitesmoke;
+.header-links-signin {
+    margin-left: 1rem;
 }
 
-.login-page {
-  width: 360px;
-  height: 340px;
-  margin: auto;
-  margin-top: 200px;
-  background-color:white;
-  border-radius: 5%;
+.header-links-signup {
+    margin-left: 1rem;
 }
 
-h1 {
+.header-links-exit {
+    margin-left: 1rem;
+}
+
+.header-links-username {
+    margin-left: 1rem;
+}
+
+.container {
+    border-radius: 10px;
+    background-color:white;
+    margin: 12.5% auto;
+    padding: 25px;
+    width: 30%;
+}
+
+.login-page-header { 
     text-align: center;
-    padding-top: 15px;
+    padding-top: 5px;
 }
 
-label {
-    text-align: center;
+.login-form {
+    padding-top: 25px;
+    padding-bottom: 15px;
 }
 
-form {
-    width: 300px;
-    margin-left: 20px;
-}
-
-form label {
+.login-form-username {
     display: flex;
-    margin-top: 20px;
-    font-size: 18px;
+    margin-bottom: 5px;
 }
 
-form input {
-    width: 100%;
-    padding: 7px;
+.login-form-input-username {
+    display: flex;
+    width: 96.5%;
     border: none;
     border: 1px solid gray;
     border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 7px;
 }
 
-button {
-    width: 320px;
-    height: 35px;
-    margin-top: 20px;
+.login-form-password {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.login-form-input-password {
+    display: flex;
+    width: 96.5%;
     border: none;
-    background-color: black;
-    color: white;
-    font-size: 18px;
-    border-radius: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 7px;
 }
 
-p {
+.login-form-signin {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 10px;
     text-align: center;
-    padding-top: 15px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.message {
+    text-align: center;
     font-size: 15px;
 }
 
 a {
     text-decoration: none;
+}
+
+/* Media queries for different screen sizes */
+@media only screen and (max-width: 1000px) {
+    .container {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .container {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .container {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .container {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    header{
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .header-title {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .header-links {
+        margin-top: 0;
+        padding-top: 0;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .header-links-username {
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 5px;
+        order: 1;
+    }
+    .header-links-signin {
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 5px;
+        order: 2;
+    }
+    .header-links-signup {
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 5px;
+        order: 3;
+    }
+    .header-links-exit {
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        order: 4;
+    }
+    .modal-content {
+        width: 85%;
+    }
 }

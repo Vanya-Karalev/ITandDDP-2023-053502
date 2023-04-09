@@ -2,31 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/SignUp.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/SignUp.css" type="text/css" media="screen" charset="utf-8">
     <title>To-Do</title>
 </head>
+
 <body>
-<header>
-  <div class="header-title">
-      <a href="../index.html">To-Do</a>
-  </div>
-  <div class="header-profile">
-      <a href="SignIn.html" style="margin-left: 1rem;">Sign In</a>
-      <a href="SignUp.html" style="margin-left: 1rem;">Sign Up</a>
-      <a href="#" style="margin-left: 1rem;">Exit</a>
-      <a style="margin-left: 1rem;">username</a>
-  </div>
-</header>
-  <div class="register-page">
-    <h1>Sign Up</h1>
-      <form class="register-form">
-        <label>Username:</label>
-        <input type="text" placeholder="username"/>
-        <label>Password:</label>
-        <input type="password" placeholder="password"/>
-        <button>Sign Up</button>
-      </form>
-      <p class="message">Already registered? <a href="SignIn.html">Sign In</a></p>
-  </div>
+    <header>
+        <div class="header-title">
+            <a href="../index.html">To-Do</a>
+        </div>
+        <div class="header-links">
+            <a class="header-links-signin" href="SignIn.html">Sign In</a>
+            <a class="header-links-signup" href="SignUp.html">Sign Up</a>
+            <a class="header-links-exit" href="#">Exit</a>
+            <a class="header-links-username">username</a>
+        </div>
+    </header>
+    <div class="container">
+      <div class="register-page">
+        <h1 class="register-page-header">Sign Up</h1>
+          <form class="register-form">
+            <label class="register-form-username">Username:</label>
+            <input class="register-form-input-username" type="text" placeholder="username"/>
+            <label class="register-form-password">Password:</label>
+            <input class="register-form-input-password" type="password" placeholder="password"/>
+            <button class="register-form-signin">Sign In</button>
+          </form>
+          <p class="message">Not registered? <a href="SignUp.html">Create an account</a></p>
+      </div>
+    </div>
 </body>
+<script src="../js/SignUp.js"></script>
 </html>

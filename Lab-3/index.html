@@ -13,11 +13,11 @@
         <div class="header-title">
             <a href="index.html">To-Do</a>
         </div>
-        <div class="header-profile">
-            <a href="html/SignIn.html" style="margin-left: 1rem;">Sign In</a>
-            <a href="html/SignUp.html" style="margin-left: 1rem;">Sign Up</a>
-            <a href="#" style="margin-left: 1rem;">Exit</a>
-            <a style="margin-left: 1rem;">username</a>
+        <div class="header-links">
+            <a class="header-links-signin" href="html/SignIn.html">Sign In</a>
+            <a class="header-links-signup" href="html/SignUp.html">Sign Up</a>
+            <a class="header-links-exit" href="#">Exit</a>
+            <a class="header-links-username">username</a>
         </div>
     </header>
     <div class="container">
@@ -41,12 +41,12 @@
                     </div>
                 </div>
                 <div class="modal-main-content">
-                    <p style="margin-bottom: 5px;">Title</p>
-                    <input type="text" style="width: calc(100% - 20px); height: 30px; font-size: 15px; padding: 0 10px 0 10px;">
-                    <p style="margin: 15px 0 5px 0;">Details (notes)</p>
-                    <textarea placeholder="Important details of your task..." style="width: calc(100% - 20px); min-height: 20px; height: 200px; font-size: 15px; border-radius: 5px; resize: vertical; padding: 10px;" dir="auto"></textarea>
-                    <p style="margin: 15px 0 5px 0;">Due date</p>
-                    <input type="date" autocomplete="off" style="border: none; border-radius: 10px; padding: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); font-size: 16px; color: #333; background-color: #f5f5f5; outline: none;">
+                    <p class="modal-main-content-title">Title</p>
+                    <input class="modal-main-content-title-note" type="text">
+                    <p class="modal-main-content-details">Details (notes)</p>
+                    <textarea class="modal-main-content-details-note" placeholder="Important details of your task..." dir="auto"></textarea>
+                    <p class="modal-main-content-date">Due date</p>
+                    <input class="modal-main-content-date-note" type="date" autocomplete="off">
                     <button class="create-button">Create task</button>
                 </div>
             </div>
@@ -56,22 +56,22 @@
             <h3>To-Do</h3>
         </div>
         <div class="container-current-notes">
-            <ul style="width: 100%;">
-                <li class="container-current-note" style="background-color: whitesmoke; height: auto; padding: 0.6rem 1rem 0.6rem 1rem; border-radius: 10px;">
-                    <div style="display: flex; flex-direction: row; align-items: center; align-content: center; justify-content: space-between;">
-                        <div class="container-current-note-text">
-                            <input type="checkbox" style="margin-right: 1rem;">
-                            <p style="margin-right: 1rem;">Pay Bills</p>
+            <ul class="container-current-notes-list">
+                <li class="container-current-note">
+                    <div class="container-current-main-note">
+                        <div class="container-current-note-left">
+                            <input class="container-current-note-left-checkbox" type="checkbox">
+                            <p class="container-current-note-left-title">Pay Bills</p>
                             <button id="button-down"><span class="down">&#8595;</span></button>
                         </div>
-                        <div class="container-current-note">
-                            <span class="date" style="font-size: 10px; margin-left: 1rem;">No date</span>
-                            <span class="edit">&#9998;</span>
-                            <span class="delete">&#128465;</span>
+                        <div class="container-current-note-right">
+                            <span class="container-current-note-right-date">No date</span>
+                            <span class="container-current-note-right-edit">&#9998;</span>
+                            <span class="container-current-note-right-delete">&#128465;</span>
                         </div>
                     </div>
-                    <div id="more-info" style="display:none; margin-left: 1.8rem; margin-top: 0.25rem;">
-                        <p style="font-size: 13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula quam velit, quis accumsan enim malesuada in. Aenean ultricies nibh a ex commodo consequat. Nulla facilisi. Nullam tincidunt elementum mauris, sed sodales leo malesuada eget. Phasellus scelerisque libero vel massa interdum, sed suscipit libero fringilla. Maecenas eget dui varius, blandit orci eget, dapibus dolor. Sed a diam tincidunt, aliquet tellus sed, faucibus lectus. Nulla in semper nunc, quis vestibulum augue.</p>
+                    <div class="container-current-note-info" id="more-info">
+                        <p class="container-current-note-info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula quam velit, quis accumsan enim malesuada in. Aenean ultricies nibh a ex commodo consequat. Nulla facilisi. Nullam tincidunt elementum mauris, sed sodales leo malesuada eget. Phasellus scelerisque libero vel massa interdum, sed suscipit libero fringilla. Maecenas eget dui varius, blandit orci eget, dapibus dolor. Sed a diam tincidunt, aliquet tellus sed, faucibus lectus. Nulla in semper nunc, quis vestibulum augue.</p>
                     </div>
                 </li>
             </ul>
@@ -80,17 +80,23 @@
             <h3>Completed</h3>
         </div>
         <div class="container-completed-notes">
-            <ul style="width: 100%;">
-                <li class="container-completed-note" style="background-color: whitesmoke; height: 40px; border-radius: 10px;">
-                    <div class="container-completed-note-text">
-                        <input type="checkbox" style="margin-right: 1rem; margin-left: 1rem;" checked>
-                        <p style="margin-right: 1rem; text-decoration: line-through;">Pay Bills</p>
+            <ul class="container-completed-notes-list">
+                <li class="container-completed-note">
+                    <div class="container-completed-main-note">
+                        <div class="container-completed-note-left">
+                            <input class="container-completed-note-left-checkbox" type="checkbox" checked>
+                            <p class="container-completed-note-left-title">Pay Bills</p>
+                            <!-- <button id="button-down"><span class="down">&#8595;</span></button> -->
+                        </div>
+                        <div class="container-completed-note-right">
+                            <span class="container-completed-note-right-date">Fri Apr 07, 2023</span>
+                            <span class="container-completed-note-right-edit">&#9998;</span>
+                            <span class="container-completed-note-right-delete">&#128465;</span>
+                        </div>
                     </div>
-                    <div class="container-completed-note" style="margin-right: 1rem;">
-                        <span class="date" style="font-size: 10px;">Fri Apr 07, 2023</span>
-                        <span class="edit">&#9998;</span>
-                        <span class="delete">&#128465;</span>
-                    </div>
+                    <!-- <div class="container-completed-note-info" id="more-info">
+                        <p class="container-completed-note-info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula quam velit, quis accumsan enim malesuada in. Aenean ultricies nibh a ex commodo consequat. Nulla facilisi. Nullam tincidunt elementum mauris, sed sodales leo malesuada eget. Phasellus scelerisque libero vel massa interdum, sed suscipit libero fringilla. Maecenas eget dui varius, blandit orci eget, dapibus dolor. Sed a diam tincidunt, aliquet tellus sed, faucibus lectus. Nulla in semper nunc, quis vestibulum augue.</p>
+                    </div> -->
                 </li>
             </ul>
         </div>
