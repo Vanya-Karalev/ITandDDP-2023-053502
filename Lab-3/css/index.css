@@ -6,6 +6,10 @@
     font-family: 'Roboto', sans-serif;
 }
 
+body {
+    min-width: 340px;
+}
+
 header {
     background-color: rgb(233, 233, 233);
     border-bottom: 1px solid #c6c6c8;
@@ -14,13 +18,13 @@ header {
     justify-content: space-between;
 }
 
-.header-title {
+.header_title {
     padding: 10px;
     margin: 10px;
     font-size: 21px;
 }
 
-.header-links {
+.header_links {
     flex-direction: row;
     display: flex;
     padding: 10px;
@@ -29,28 +33,23 @@ header {
     align-content: center;
 }
 
-.header-links-signin {
+.header_links_signin {
     margin-left: 1rem;
 }
 
-.header-links-signup {
+.header_links_signup {
     margin-left: 1rem;
 }
 
-.header-links-exit {
+.header_links_exit {
     margin-left: 1rem;
 }
 
-.header-links-username {
+.header_links_username {
     margin-left: 1rem;
 }
 
-.container-header{
-    padding: 20px;
-    border-bottom: 1px solid black;
-}
-
-.container-add-note {
+.container__add_note {
     flex-direction: row;
     display: flex;
     padding: 20px;
@@ -58,12 +57,12 @@ header {
     align-content: center;
 }
 
-.input-note {
+.input_note {
     width: 100%;
     margin-right: 1rem;
 }
 
-.add-button {
+.add_button {
     background-color: black;
     border: none;
     color: white;
@@ -76,7 +75,7 @@ header {
     width: 100%;
 }
 
-.create-button {
+.create_button {
     background-color: black;
     border: none;
     color: white;
@@ -105,7 +104,7 @@ header {
 }
   
 /* Modal Content/Box */
-.modal-content {
+.modal_content {
     background-color: #fefefe;
     margin: 10% auto;
     padding: 25px;
@@ -114,7 +113,7 @@ header {
     border-radius: 10px;
 }
 
-.modal-content-header {
+.modal_content__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -122,26 +121,28 @@ header {
     align-content: center;
 }
 
-.modal-main-content {
+.modal_main__content {
     padding-top: 10px;
 }
 
-.modal-main-content-title {
+.main_content__title {
     margin-bottom: 5px;
 }
 
-.modal-main-content-title-note {
+.title__note {
     width: calc(100% - 20px); 
     height: 30px; 
     font-size: 15px; 
     padding: 0 10px 0 10px;
+    border: 1px solid #888;
+    border-radius: 5px;
 }
 
-.modal-main-content-details {
+.main_content__details {
     margin: 15px 0 5px 0;
 }
 
-.modal-main-content-details-note {
+.details__note {
     width: calc(100% - 20px); 
     min-height: 20px; 
     height: 200px; 
@@ -151,18 +152,14 @@ header {
     padding: 10px;
 }
 
-.modal-main-content-date {
+.main_content__date {
     margin: 15px 0 5px 0;
 }
 
-.modal-main-content-date-note {
-    border: none; 
-    border-radius: 10px; 
-    padding: 10px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    font-size: 16px; 
-    color: #333; 
-    background-color: #f5f5f5; 
+.date__note {
+    border: 1px solid #888;
+    border-radius: 10px;
+    padding: 10px;
     outline: none;
 }
 
@@ -180,24 +177,40 @@ header {
     cursor: pointer;
 }
 
-.container-current-notes-header {
+.scroll {
+    height: 700px;
+    overflow: auto;
+}
+
+.container__current_notes_header {
     padding: 20px;
     border-bottom: 1px solid black;
 }
 
-.container-current-notes {
-    flex-direction: row;
+.container__current_notes {
+    flex-direction: column;
     display: flex;
     padding: 20px;
     align-items: center;
     align-content: center;
 }
 
-.container-current-notes-list {
+.tasks_empty {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.tasks_empty__img {
+    max-width: 640px;
+}
+
+.current_notes__list {
     width: 100%;
 }
 
-.container-current-note {
+.list__current_note {
     list-style-type: none; 
     align-items: center;
     align-content: center;
@@ -206,9 +219,10 @@ header {
     height: auto; 
     padding: 0.6rem 1rem 0.6rem 1rem; 
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.container-current-main-note {
+.current_note__main {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -216,7 +230,7 @@ header {
     align-content: center;
 }
 
-.container-current-note-left {
+.main__left {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -258,7 +272,7 @@ header {
     margin-left: 1rem;
 }
 
-.container-completed-notes-header {
+.container__completed_notes_header {
     padding: 20px;
     border-bottom: 1px solid black;
 }
@@ -284,6 +298,7 @@ header {
     height: auto; 
     padding: 0.6rem 1rem 0.6rem 1rem; 
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .container-completed-main-note {
@@ -341,83 +356,61 @@ a {
     text-decoration: none;
 }
 
+.container-current-note-right-edit {
+    pointer-events: none;
+}
+
+.container-current-note-right-delete {
+    pointer-events: none;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+input[type="checkbox"]:checked {
+    border-radius: 50%;
+    accent-color: black;
+    color: #fff;
+}
+
 /* Media queries for different screen sizes */
 @media only screen and (max-width: 1000px) {
-    .modal-content {
+    .modal_content {
         width: 40%;
     }
 }
 
 @media only screen and (max-width: 900px) {
-    .modal-content {
+    .modal_content {
         width: 50%;
     }
 }
 
 @media only screen and (max-width: 800px) {
-    .modal-content {
+    .modal_content {
         width: 60%;
     }
 }
 
 @media only screen and (max-width: 700px) {
-    .modal-content {
+    .modal_content {
         width: 70%;
     }
 }
 
 @media only screen and (max-width: 600px) {
-    .modal-content {
+    .modal_content {
         width: 80%;
     }
 }
 
 @media only screen and (max-width: 400px) {
-    header{
-        margin-top: 0;
-        display: flex;
-        flex-direction: column;
+    .header_links_signin, .header_links_signup {
+        display: none;
     }
-    .header-title {
-        margin-top: 0;
-        text-align: center;
-    }
-
-    .header-links {
-        margin-top: 0;
-        padding-top: 0;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-    }
-    .header-links-username {
-        margin-left: 0;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 5px;
-        order: 1;
-    }
-    .header-links-signin {
-        margin-left: 0;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 5px;
-        order: 2;
-    }
-    .header-links-signup {
-        margin-left: 0;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 5px;
-        order: 3;
-    }
-    .header-links-exit {
-        margin-left: 0;
-        display: flex;
-        flex-direction: column;
-        order: 4;
-    }
-    .modal-content {
+    .modal_content {
         width: 85%;
     }
 }
