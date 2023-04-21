@@ -34,19 +34,7 @@ header {
     align-content: center;
 }
 
-.header-links-signin {
-    margin-left: 1rem;
-}
-
-.header-links-signup {
-    margin-left: 1rem;
-}
-
-.header-links-exit {
-    margin-left: 1rem;
-}
-
-.header-links-username {
+.header-links__signin, .header-links__signup, .header-links__exit, .header-links__username {
     margin-left: 1rem;
 }
 
@@ -58,7 +46,7 @@ header {
     width: 30%;
 }
 
-.login-page-header { 
+.login-page__header { 
     text-align: center;
     padding-top: 5px;
 }
@@ -68,12 +56,12 @@ header {
     padding-bottom: 15px;
 }
 
-.login-form-username {
+.form__username {
     display: flex;
     margin-bottom: 5px;
 }
 
-.login-form-input-username {
+.form__input-username {
     display: flex;
     width: 96.5%;
     border: none;
@@ -83,12 +71,12 @@ header {
     padding: 7px;
 }
 
-.login-form-password {
+.form__password {
     display: flex;
     margin-bottom: 5px;
 }
 
-.login-form-input-password {
+.form__input-password {
     display: flex;
     width: 96.5%;
     border: none;
@@ -97,7 +85,7 @@ header {
     padding: 7px;
 }
 
-.login-form-signin {
+.form__signin {
     background-color: black;
     border: none;
     color: white;
@@ -152,7 +140,7 @@ a {
 }
 
 @media only screen and (max-width: 400px) {
-    .header-links-exit, .header-links-username {
+    .header-links__exit, .header-links__username {
         display: none;
     }
     .modal-content {

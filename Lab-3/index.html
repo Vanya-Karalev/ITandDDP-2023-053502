@@ -10,26 +10,26 @@
 
 <body>
     <header>
-        <div class="header_title">
+        <div class="header-title">
             <a href="index.html">To-Do</a>
         </div>
-        <div class="header_links">
-            <a class="header_links_signin" href="html/SignIn.html">Sign In</a>
-            <a class="header_links_signup" href="html/SignUp.html">Sign Up</a>
-            <a class="header_links_exit" href="#">Exit</a>
-            <a class="header_links_username">username</a>
+        <div class="header-links">
+            <a class="header-links__signin" href="html/SignIn.html">Sign In</a>
+            <a class="header-links__signup" href="html/SignUp.html">Sign Up</a>
+            <a class="header-links__exit" href="#">Exit</a>
+            <a class="header-links__username">username</a>
         </div>
     </header>
     <div class="container">
-        <div class="container__add_note">
-            <button id="myBtn" class="add_button">+ Add new task</button>
+        <div class="container__add-note">
+            <button id="myBtn" class="add-button">+ Add new task</button>
         </div>
 
         <!-- The Modal -->
         <div id="myModal" class="modal">
             <!-- Modal content -->
-            <div class="modal_content">
-                <div class="modal_content__header">
+            <div class="modal-content">
+                <div class="modal-content__header">
                     <div>
                         <h2>New Task</h2>
                     </div>
@@ -37,68 +37,68 @@
                         <span class="close">&times;</span>
                     </div>
                 </div>
-                <div class="modal__main_content">
-                    <p class="main_content__title">Title</p>
+                <div class="modal__main-content">
+                    <p class="main-content__title">Title</p>
                     <input class="title__note" id="noteTitle" type="text">
-                    <p class="main_content__details">Details (notes)</p>
+                    <p class="main-content__details">Details (notes)</p>
                     <textarea class="details__note" placeholder="Important details of your task..." dir="auto"></textarea>
-                    <p class="main_content__date">Due date</p>
+                    <p class="main-content__date">Due date</p>
                     <input class="date__note" type="date" autocomplete="off">
-                    <button class="create_button" id="createTask">Create task</button>
+                    <button class="create-button" id="createTask">Create task</button>
                 </div>
             </div>
         </div>
 
         <div class="scroll">
-            <div class="container__current_notes_header">
-                <h3>To-Do</h3>
+            <div class="container__current-notes-header">
+                <p class="titles">To-Do</p>
             </div>
-            <div class="container__current_notes">
-                <div class="tasks_empty">
-                    <img src="src/walking-outside.png" alt="A women walking in the park" class="tasks_empty__img">
-                    <p>You don't have any tasks, just relax!</p>
+            <div class="container__current-notes">
+                <div class="tasks-empty">
+                    <img src="src/walking-outside.png" alt="A women walking in the park" class="tasks-empty__img">
+                    <p style="font-size: 16px;">You don't have any tasks, just relax!</p>
                 </div>
-                <ul class="current_notes__list">
-                    <!-- <li class="container-current-note">
-                        <div class="container-current-main-note">
-                            <div class="container-current-note-left">
-                                <input class="container-current-note-left-checkbox" type="checkbox">
-                                <p class="container-current-note-left-title">Pay Bills</p>
+                <ul class="current-notes__list">
+                    <!-- <li class="list__current-note">
+                        <div class="current-note__main">
+                            <div class="current-main__left">
+                                <input class="current-main__left__checkbox" type="checkbox">
+                                <p class="current-main__left__title">Pay Bills</p>
                                 <button id="button-down"><span class="down">&#8595;</span></button>
                             </div>
-                            <div class="container-current-note-right">
-                                <span class="container-current-note-right-date">No date</span>
-                                <span class="container-current-note-right-edit">&#9998;</span>
-                                <span class="container-current-note-right-delete">&#128465;</span>
+                            <div class="current-main__right">
+                                <span class="current-main__right__date">No date</span>
+                                <span class="current-main__right__edit">&#9998;</span>
+                                <span class="current-main__right__delete">&#128465;</span>
                             </div>
                         </div>
-                        <div class="container-current-note-info" id="more-info">
-                            <p class="container-current-note-info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula quam velit, quis accumsan enim malesuada in. Aenean ultricies nibh a ex commodo consequat. Nulla facilisi. Nullam tincidunt elementum mauris, sed sodales leo malesuada eget. Phasellus scelerisque libero vel massa interdum, sed suscipit libero fringilla. Maecenas eget dui varius, blandit orci eget, dapibus dolor. Sed a diam tincidunt, aliquet tellus sed, faucibus lectus. Nulla in semper nunc, quis vestibulum augue.</p>
+                        <div class="current-note__info" id="more-info">
+                            <p class="current-note__info__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula quam velit, quis accumsan enim malesuada in. Aenean ultricies nibh a ex commodo consequat. Nulla facilisi. Nullam tincidunt elementum mauris, sed sodales leo malesuada eget. Phasellus scelerisque libero vel massa interdum, sed suscipit libero fringilla. Maecenas eget dui varius, blandit orci eget, dapibus dolor. Sed a diam tincidunt, aliquet tellus sed, faucibus lectus. Nulla in semper nunc, quis vestibulum augue.</p>
                         </div>
                     </li> -->
                 </ul>
             </div>
-            <div class="container__completed_notes_header">
-                <h3>Completed tasks</h3>
+            <div class="container__completed-notes-header">
+                <p class="titles">Completed tasks</p>
             </div>
-            <div class="container-completed-notes">
-                <ul class="container-completed-notes-list">
-                    <li class="container-completed-note">
-                        <div class="container-completed-main-note">
-                            <div class="container-completed-note-left">
-                                <input class="container-completed-note-left-checkbox" type="checkbox" checked style="background-color: black;">
-                                <p class="container-completed-note-left-title">Pay Bills</p>
-                                <!-- <button id="button-down"><span class="down">&#8595;</span></button> -->
+            <div class="container__completed-notes">
+                <ul class="completed-notes__list">
+                    <li class="list__completed-note">
+                        <div class="completed-note__main">
+                            <div class="completed-main__left">
+                                <input class="completed-main__left__checkbox" type="checkbox" checked style="background-color: black;">
+                                <p class="completed-main__left__title">Pay Bills</p>
+                                <button id="button-down"><span class="down">&#8595;</span></button>
                             </div>
-                            <div class="container-completed-note-right">
-                                <span class="container-completed-note-right-date">Fri Apr 07, 2023</span>
-                                <span class="container-completed-note-right-edit">&#9998;</span>
-                                <span class="container-completed-note-right-delete">&#128465;</span>
+                            <div class="completed-main__right">
+                                <span class="completed-main__right__date">Fri Apr 07, 2023</span>
+                                <span class="completed-main__right__edit">&#9998;</span>
+                                <span class="completed-main__right__delete">&#128465;</span>
                             </div>
                         </div>
-                        <!-- <div class="container-completed-note-info" id="more-info">
-                            <p class="container-completed-note-info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula quam velit, quis accumsan enim malesuada in. Aenean ultricies nibh a ex commodo consequat. Nulla facilisi. Nullam tincidunt elementum mauris, sed sodales leo malesuada eget. Phasellus scelerisque libero vel massa interdum, sed suscipit libero fringilla. Maecenas eget dui varius, blandit orci eget, dapibus dolor. Sed a diam tincidunt, aliquet tellus sed, faucibus lectus. Nulla in semper nunc, quis vestibulum augue.</p>
-                        </div> -->
+                        <div class="completed-note__info" id="more-info">
+                            <p class="completed-note__info__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula quam velit, quis accumsan enim malesuada in. Aenean ultricies nibh a ex commodo consequat. Nulla facilisi. Nullam tincidunt elementum mauris, sed sodales leo malesuada eget. Phasellus scelerisque libero vel massa interdum, sed suscipit libero fringilla. Maecenas eget dui varius, blandit orci eget, dapibus dolor. Sed a diam tincidunt, aliquet tellus sed, faucibus lectus. Nulla in semper nunc, quis vestibulum augue.</p>
+                        </div>
                     </li>
                 </ul>
             </div>

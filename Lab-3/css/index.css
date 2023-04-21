@@ -18,13 +18,13 @@ header {
     justify-content: space-between;
 }
 
-.header_title {
+.header-title {
     padding: 10px;
     margin: 10px;
-    font-size: 21px;
+    font-size: 22px;
 }
 
-.header_links {
+.header-links {
     flex-direction: row;
     display: flex;
     padding: 10px;
@@ -33,23 +33,11 @@ header {
     align-content: center;
 }
 
-.header_links_signin {
+.header-links__signin, .header-links__signup, .header-links__exit, .header-links__username {
     margin-left: 1rem;
 }
 
-.header_links_signup {
-    margin-left: 1rem;
-}
-
-.header_links_exit {
-    margin-left: 1rem;
-}
-
-.header_links_username {
-    margin-left: 1rem;
-}
-
-.container__add_note {
+.container__add-note {
     flex-direction: row;
     display: flex;
     padding: 20px;
@@ -57,12 +45,7 @@ header {
     align-content: center;
 }
 
-.input_note {
-    width: 100%;
-    margin-right: 1rem;
-}
-
-.add_button {
+.add-button {
     background-color: black;
     border: none;
     color: white;
@@ -75,7 +58,12 @@ header {
     width: 100%;
 }
 
-.create_button {
+.input-note {
+    width: 100%;
+    margin-right: 1rem;
+}
+
+.create-button {
     background-color: black;
     border: none;
     color: white;
@@ -91,29 +79,29 @@ header {
 
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: hidden; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
-  
+
 /* Modal Content/Box */
-.modal_content {
+.modal-content {
     background-color: #fefefe;
     margin: 10% auto;
     padding: 25px;
     border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
+    width: 40%;
     border-radius: 10px;
 }
 
-.modal_content__header {
+.modal-content__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -121,11 +109,11 @@ header {
     align-content: center;
 }
 
-.modal_main__content {
+.modal-main__content {
     padding-top: 10px;
 }
 
-.main_content__title {
+.main-content__title {
     margin-bottom: 5px;
 }
 
@@ -138,7 +126,7 @@ header {
     border-radius: 5px;
 }
 
-.main_content__details {
+.main-content__details {
     margin: 15px 0 5px 0;
 }
 
@@ -152,7 +140,7 @@ header {
     padding: 10px;
 }
 
-.main_content__date {
+.main-content__date {
     margin: 15px 0 5px 0;
 }
 
@@ -182,12 +170,28 @@ header {
     overflow: auto;
 }
 
-.container__current_notes_header {
+.container__current-notes-header, .container__completed-notes-header {
     padding: 20px;
     border-bottom: 1px solid black;
 }
 
-.container__current_notes {
+.titles {
+    font-weight: bold; 
+    font-size: 22px;
+}
+
+.tasks-empty {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.tasks-empty__img {
+    max-width: 630px;
+}
+
+.container__current-notes, .container__completed-notes {
     flex-direction: column;
     display: flex;
     padding: 20px;
@@ -195,22 +199,11 @@ header {
     align-content: center;
 }
 
-.tasks_empty {
-    width: 100%;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.tasks_empty__img {
-    max-width: 640px;
-}
-
-.current_notes__list {
+.current-notes__list, .completed-notes__list {
     width: 100%;
 }
 
-.list__current_note {
+.list__current-note, .list__completed-note {
     list-style-type: none; 
     align-items: center;
     align-content: center;
@@ -222,7 +215,7 @@ header {
     margin-bottom: 10px;
 }
 
-.current_note__main {
+.current-note__main, .completed-note__main {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -230,138 +223,48 @@ header {
     align-content: center;
 }
 
-.main__left {
+.current-main__left, .current-main__right, .completed-main__left, .completed-main__right {
     display: flex;
     flex-direction: row;
     align-items: center;
     align-content: center;
 }
 
-.container-current-note-left-checkbox {
+.current-main__left__checkbox, .completed-main__left__checkbox {
     margin-right: 1rem;
 }
 
-.container-current-note-left-title {
+.current-main__left__title {
     margin-right: 1rem;
 }
 
-.container-current-note-right {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: center;
-}
-
-.container-current-note-right-date {
-    font-size: 10px; 
-    margin-left: 1rem;
-}
-
-.container-current-note-info {
-    display:none;
-    margin-left: 1.8rem; 
-    margin-top: 0.25rem;
-}
-
-.container-current-note-info-text {
-    font-size: 13px;
-}
-
-.container-current-note-right-edit {
-    margin-right: 1rem;
-    margin-left: 1rem;
-}
-
-.container__completed_notes_header {
-    padding: 20px;
-    border-bottom: 1px solid black;
-}
-
-.container-completed-notes {
-    flex-direction: row;
-    display: flex;
-    padding: 20px;
-    align-items: center;
-    align-content: center;
-}
-
-.container-completed-notes-list {
-    width: 100%;
-}
-
-.container-completed-note {
-    list-style-type: none; 
-    align-items: center;
-    align-content: center;
-    justify-content: space-between;
-    background-color: whitesmoke; 
-    height: auto; 
-    padding: 0.6rem 1rem 0.6rem 1rem; 
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.container-completed-main-note {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    align-content: center;
-}
-
-.container-completed-note-left {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: center;
-}
-
-.container-completed-note-left-checkbox {
-    margin-right: 1rem;
-}
-
-.container-completed-note-left-title {
+.completed-main__left__title {
     margin-right: 1rem;
     text-decoration: line-through;
 }
 
-.container-completed-note-right {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: center;
-}
-
-.container-completed-note-right-date {
+.current-main__right__date, .completed-main__right__date {
     font-size: 10px; 
     margin-left: 1rem;
 }
 
-.container-completed-note-info {
-    display:none;
-    margin-left: 1.8rem; 
-    margin-top: 0.25rem;
-}
-
-.container-completed-note-info-text {
-    font-size: 13px;
-}
-
-.container-completed-note-right-edit {
+.current-main__right__edit, .completed-main__right__edit {
     margin-right: 1rem;
     margin-left: 1rem;
 }
 
+.current-note__info, .completed-note__info {
+    display: none;
+    margin-left: 1.8rem; 
+    margin-top: 0.25rem;
+}
+
+.current-note__info__text, .completed-note__info__text {
+    font-size: 13px;
+}
+
 a {
     text-decoration: none;
-}
-
-.container-current-note-right-edit {
-    pointer-events: none;
-}
-
-.container-current-note-right-delete {
-    pointer-events: none;
 }
 
 input[type="checkbox"] {
@@ -377,40 +280,49 @@ input[type="checkbox"]:checked {
 
 /* Media queries for different screen sizes */
 @media only screen and (max-width: 1000px) {
-    .modal_content {
+    .modal-content {
         width: 40%;
     }
 }
 
 @media only screen and (max-width: 900px) {
-    .modal_content {
+    .modal-content {
         width: 50%;
     }
 }
 
 @media only screen and (max-width: 800px) {
-    .modal_content {
+    .modal-content {
         width: 60%;
     }
 }
 
 @media only screen and (max-width: 700px) {
-    .modal_content {
+    .tasks-empty__img {
+        max-width: 600px;
+    }
+    .modal-content {
         width: 70%;
     }
 }
 
 @media only screen and (max-width: 600px) {
-    .modal_content {
+    .tasks-empty__img {
+        max-width: 500px;
+    }
+    .modal-content {
         width: 80%;
     }
 }
 
 @media only screen and (max-width: 400px) {
-    .header_links_signin, .header_links_signup {
+    .tasks-empty__img {
+        max-width: 400px;
+    }
+    .header-links__signin, .header-links__signup {
         display: none;
     }
-    .modal_content {
+    .modal-content {
         width: 85%;
     }
 }

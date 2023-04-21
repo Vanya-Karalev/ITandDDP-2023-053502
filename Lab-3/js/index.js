@@ -101,23 +101,23 @@ function displayMessages() {
 
 
     displayMessage += `
-    <li class="list__current_note">
-        <div class="current_note__main">
-            <div class="main__left">
-                <input class="container-current-note-left-checkbox" type="checkbox" id='item_${i}'>
-                <p for='item_${i}' class="container-current-note-left-title">${item.noteTitle}</p>
+    <li class="list__current-note">
+        <div class="current-note__main">
+            <div class="current-main__left">
+                <input class="current-main__left__checkbox" type="checkbox" id='item_${i}'>
+                <p for='item_${i}' class="current-main__left__title">${item.noteTitle}</p>
                 <button id="button-down_${i}" onclick="GetInfo(this)" style="border: none; ${item.noteInfo ? '' : 'display: none;'}">
                   <span class="down">&#8595;</span>
                 </button>
             </div>
-            <div class="main__right">
-                <span for='item_${i}' class="container-current-note-right-date">${item.noteDate ? item.noteDate : 'No date'}</span>
-                <button data-action="edit" onclick="editTask(this)" style="border: none;"><span class="container-current-note-right-edit">&#9998;</span></button>
-                <button data-action="delete" style="border: none;"><span class="container-current-note-right-delete">&#128465;</span></button>
+            <div class="current-main__right">
+                <span for='item_${i}' class="current-main__right__date">${item.noteDate ? item.noteDate : 'No date'}</span>
+                <button data-action="edit" onclick="editTask(this)" style="border: none;"><span class="current-main__right__edit">&#9998;</span></button>
+                <button data-action="delete" style="border: none;"><span class="current-main__right__delete">&#128465;</span></button>
             </div>
         </div>
-        <div class="container-current-note-info" id="more-info_${i}" style="display: none;">
-            <p for='item_${i}' class="container-current-note-info-text">${item.noteInfo}</p>
+        <div class="current-note__info" id="more-info_${i}" style="display: none;">
+            <p for='item_${i}' class="current-note__info__text">${item.noteInfo}</p>
         </div>
     </li>
     `;
