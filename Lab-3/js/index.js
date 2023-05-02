@@ -28,11 +28,8 @@ window.onclick = function(event) {
 let scrollableDiv = document.querySelector('.scroll');
 
 scrollableDiv.addEventListener('wheel', function(e) {
-  // Останавливает прокручивание на странице, если
-  // элемент не имеет больше места для прокрутки в этом направлении
   e.preventDefault();
 
-  // Прокручивает элемент, если есть место для прокрутки
   scrollableDiv.scrollTop += e.deltaY;
 });
 

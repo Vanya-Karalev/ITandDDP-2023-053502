@@ -8,11 +8,12 @@
 
 body {
     background-color:whitesmoke;
-    min-width: 340px;
+    min-width: 370px;
 }
 
 header {
-    background-color: rgb(233, 233, 233);
+    /* background-color: rgb(233, 233, 233); */
+    background-color: #dcd9d9;
     border-bottom: 1px solid #c6c6c8;
     display: flex;
     flex-direction: row;
@@ -40,10 +41,11 @@ header {
 
 .container {
     border-radius: 10px;
-    background-color:white;
-    margin: 12.5% auto;
+    background-color: white;
+    margin: 150px auto;
     padding: 25px;
-    width: 30%;
+    max-width: 370px;
+    width: 100%;
 }
 
 .login-page__header { 
@@ -109,33 +111,15 @@ a {
 }
 
 /* Media queries for different screen sizes */
-@media only screen and (max-width: 1000px) {
-    .container {
-        width: 40%;
-    }
-}
-
-@media only screen and (max-width: 900px) {
-    .container {
-        width: 50%;
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    .container {
-        width: 60%;
-    }
-}
-
-@media only screen and (max-width: 700px) {
-    .container {
-        width: 70%;
-    }
-}
-
 @media only screen and (max-width: 600px) {
     .container {
-        width: 80%;
+        max-width: 330px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .container {
+        max-width: 300px;
     }
 }
 
@@ -143,7 +127,7 @@ a {
     .header-links__exit, .header-links__username {
         display: none;
     }
-    .modal-content {
-        width: 85%;
+    .container {
+        max-width: 270px;
     }
 }
