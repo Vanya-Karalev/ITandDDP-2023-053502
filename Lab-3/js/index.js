@@ -25,13 +25,13 @@ window.onclick = function(event) {
 }
 
 
-let scrollableDiv = document.querySelector('.scroll');
+// let scrollableDiv = document.querySelector('.scroll');
 
-scrollableDiv.addEventListener('wheel', function(e) {
-  e.preventDefault();
+// scrollableDiv.addEventListener('wheel', function(e) {
+//   e.preventDefault();
 
-  scrollableDiv.scrollTop += e.deltaY;
-});
+//   scrollableDiv.scrollTop += e.deltaY;
+// });
 
 
 

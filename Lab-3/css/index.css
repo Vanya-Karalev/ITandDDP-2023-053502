@@ -11,18 +11,27 @@ body {
 }
 
 header {
-    /* background-color: rgb(233, 233, 233); */
-    background-color: #dcd9d9;
+    background-color: black;
     border-bottom: 1px solid #c6c6c8;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: fixed;
+    width: 100%;
 }
 
 .header-title {
     padding: 10px;
     margin: 10px;
     font-size: 22px;
+}
+
+.header-title a, .header-title a:visited, .header-title a:hover, .header-links a, .header-links a:visited, .header-links a:hover {
+    color: white;
+}
+
+.header-links a:active, .header-title a:active {
+    color: lightgray;
 }
 
 .header-links {
@@ -44,8 +53,8 @@ header {
     padding: 20px;
     align-items: center;
     align-content: center;
-    /* background-color: #dcd9d9; */
-    background-color: rgb(233, 233, 233);
+    background-color: whitesmoke;
+    border-bottom: 1px solid #c6c6c8;
 }
 
 .add-button {
@@ -169,8 +178,10 @@ header {
 }
 
 .scroll {
-    height: 700px;
-    overflow: auto;
+    padding-top: 67px;
+    /* height: 900px; */
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .container__current-notes-header, .container__completed-notes-header {
@@ -205,7 +216,6 @@ header {
 
 .current-notes__list, .completed-notes__list {
     width: 100%;
-    padding-bottom: 60px;
 }
 
 .list__current-note, .list__completed-note {
