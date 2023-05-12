@@ -119,6 +119,7 @@ header {
     justify-content: space-between;
     align-items: center;
     align-content: center;
+    margin-bottom: 15px;
 }
 
 .modal-main__content {
@@ -179,7 +180,6 @@ header {
 
 .scroll {
     padding-top: 67px;
-    /* height: 900px; */
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -281,6 +281,12 @@ header {
 a {
     text-decoration: none;
 }
+
+
+.current-main__right__edit, .current-main__right__delete, .down {
+    pointer-events: none;
+}
+
 
 input[type="checkbox"] {
     width: 18px;

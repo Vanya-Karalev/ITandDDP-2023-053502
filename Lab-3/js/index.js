@@ -5,7 +5,7 @@ let modal = document.getElementById("myModal");
 let btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
-let span = document.getElementsByClassName("close")[0];
+let span = document.getElementById("ModalClose");
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
@@ -25,25 +25,24 @@ window.onclick = function(event) {
 }
 
 
-// let scrollableDiv = document.querySelector('.scroll');
-
-// scrollableDiv.addEventListener('wheel', function(e) {
-//   e.preventDefault();
-
-//   scrollableDiv.scrollTop += e.deltaY;
-// });
-
-
-
 let todoList = [];
 
-let noteTitle = document.querySelector(".title__note"),
-  noteInfo = document.querySelector(".details__note"),
-  noteDate = document.querySelector(".date__note"),
-  todoCurrent = document.querySelector(".current_notes__list"),
-  createTask = document.querySelector(".create_button");
+let noteTitle = document.querySelector(".title__note");
+let noteInfo = document.querySelector(".details__note");
+let noteDate = document.querySelector(".date__note");
+let createTask = document.getElementById("createTask");
 
-createTask.addEventListener('click', function() {
+let todoCurrent = document.querySelector(".current-notes__list");
+let todoCompleted = document.querySelector(".completed-notes__list");
+
+let emptyTasks = document.querySelector(".tasks-empty");
+
+if (localStorage.getItem('todo')) {
+  todoList = JSON.parse(localStorage.getItem('todo'));
+  displayCurrentMessages();
+}
+
+function CreateNewTodo() {
 
   let newToDo = {
     noteTitle: noteTitle.value,
@@ -57,101 +56,174 @@ createTask.addEventListener('click', function() {
     return;
   }
 
-  todoList.push(newToDo);
-  displayMessages();
+  todoList.unshift(newToDo);
+  displayCurrentMessages();
+  localStorage.setItem('todo', JSON.stringify(todoList));
 
   noteTitle.value = '';
   noteInfo.value = '';
   noteDate.value = '';
   modal.style.display = "none";
-});
-
-function displayMessages() {
-  
-  todoList.forEach(function(item, i) {
-    let displayMessage = document.createElement("li");
-    displayMessage.classList.add("list__current_note");
-
-    let currentNote = document.createElement("div");
-    currentNote.classList.add("current_note__main");
-
-    let mainLeft = document.createElement("div");
-    mainLeft.classList.add("main__left");
-    mainLeft.innerHTML = ''
-
-    let mainRight = document.createElement("div");
-    mainLeft.classList.add("main__right");
-    mainRight.innerHTML = ''
-
-    currentNote.appendChild(mainLeft);
-    currentNote.appendChild(mainRight);
-
-    let currentNoteInfo = document.createElement("div");
-    currentNoteInfo.classList.add("container-current-note-info");
-    currentNoteInfo.attributes.add("id", `more-info_${i}`);
-    currentNoteInfo.attributes.add("style", "display: none;");
-    currentNoteInfo.innerHTML = '';
-
-    displayMessage.appendChild(currentNote);
-    displayMessage.appendChild(currentNoteInfo);
-
-
-
-    displayMessage += `
-    <li class="list__current-note">
-        <div class="current-note__main">
-            <div class="current-main__left">
-                <input class="current-main__left__checkbox" type="checkbox" id='item_${i}'>
-                <p for='item_${i}' class="current-main__left__title">${item.noteTitle}</p>
-                <button id="button-down_${i}" onclick="GetInfo(this)" style="border: none; ${item.noteInfo ? '' : 'display: none;'}">
-                  <span class="down">&#8595;</span>
-                </button>
-            </div>
-            <div class="current-main__right">
-                <span for='item_${i}' class="current-main__right__date">${item.noteDate ? item.noteDate : 'No date'}</span>
-                <button data-action="edit" onclick="editTask(this)" style="border: none;"><span class="current-main__right__edit">&#9998;</span></button>
-                <button data-action="delete" style="border: none;"><span class="current-main__right__delete">&#128465;</span></button>
-            </div>
-        </div>
-        <div class="current-note__info" id="more-info_${i}" style="display: none;">
-            <p for='item_${i}' class="current-note__info__text">${item.noteInfo}</p>
-        </div>
-    </li>
-    `;
-    todoCurrent.innerHTML = displayMessage;
-  });
 };
 
-function GetInfo(button) {
-  let id = button.id.split('_')[1];
-  let infoDiv = document.getElementById(`more-info_${id}`);
-  infoDiv.style.display = infoDiv.style.display === 'none' ? 'block' : 'none';
-}
+createTask.addEventListener('click', CreateNewTodo);
+
+function displayCurrentMessages() {
+
+  let displayMessage = '';
+
+  if (todoList.length > 0) {
+    emptyTasks.style.display = 'none';
+  } else {
+    emptyTasks.style = 'width: 100%; align-items: center; display: flex; flex-direction: column;';
+  }
+
+  todoList.forEach(function(item, i) {
+    displayMessage += `
+    <li class="list__current-note">
+      <div class="current-note__main">
+          <div class="current-main__left">
+              <input class="current-main__left__checkbox" type="checkbox" ${item.checked ? 'checked' : ''} id='item_${i}'>
+              <p class="current-main__left__title" for='item_${i}'>${item.noteTitle}</p>
+              <button id="button-down" data-action="info" data-id='${i}' style="border: none; ${item.noteInfo ? '' : 'display: none;'}"><span class="down">&#8595;</span></button>
+          </div>
+          <div class="current-main__right">
+              <span class="current-main__right__date">${item.noteDate ? item.noteDate : 'No date'}</span>
+              <button data-action="edit" style="border: none;" data-id='${i}'>
+                <span class="current-main__right__edit">&#9998;</span>
+              </button>
+              <button data-action="delete" style="border: none;" data-id='${i}'>
+                <span class="current-main__right__delete">&#128465;</span>
+              </button>
+          </div>
+      </div>
+      <div class="current-note__info" id="more-info_${i}" style="display: none;">
+          <p class="current-note__info__text">${item.noteInfo}</p>
+      </div>
+    </li>
+    `;
+  });
+
+  todoCurrent.innerHTML = displayMessage;
+};
+
+function displayCompletedMessages() {
+
+  let displayMessage = '';
+
+  todoList.forEach(function(item, i) {
+    
+    displayMessage += `
+    <li class="list__completed-note">
+      <div class="completed-note__main">
+          <div class="completed-main__left">
+              <input class="completed-main__left__checkbox" type="checkbox" ${item.checked ? 'checked' : ''} id='item_${i}'>
+              <p class="completed-main__left__title" for='item_${i}'>${item.noteTitle}</p>
+              <button id="button-down" data-action="info" data-id='${i}' style="border: none; ${item.noteInfo ? '' : 'display: none;'}"><span class="down">&#8595;</span></button>
+          </div>
+          <div class="completed-main__right">
+              <span class="completed-main__right__date">${item.noteDate ? item.noteDate : 'No date'}</span>
+              <button data-action="edit" style="border: none;" data-id='${i}'>
+                <span class="completed-main__right__edit">&#9998;</span>
+              </button>
+              <button data-action="delete" style="border: none;" data-id='${i}'>
+                <span class="completed-main__right__delete">&#128465;</span>
+              </button>
+          </div>
+      </div>
+      <div class="completed-note__info" id="more-info_${i}" style="display: none;">
+          <p class="completed-note__info__text">${item.noteInfo}</p>
+      </div>
+    </li>
+    `;
+  });
+
+  todoCurrent.innerHTML = displayMessage;
+};
+
+todoCurrent.addEventListener('change', function(event) {
+  let id = event.target.getAttribute('id');
+  let valueP = todoCurrent.querySelector('[for=' + id + ']').innerHTML;
+
+  todoList.forEach(function(item){
+    if (item.noteTitle === valueP) {
+      item.checked = !item.checked;
+      localStorage.setItem('todo', JSON.stringify(todoList));
+    }
+  })
+})
 
 todoCurrent.addEventListener('click', deleteTask);
 
 function deleteTask(event) {
-  if (event.target.dataset.action === 'delete') {
-    const parentNode = event.target.closest('.list__current_note');
-    parentNode.remove();
+  if (event.target.dataset.action !== 'delete') 
+    return;
+
+  let id = event.target.getAttribute('data-id');
+  todoList.splice(id, 1);
+  displayCurrentMessages();
+  localStorage.setItem('todo', JSON.stringify(todoList));
+
+}
+
+todoCurrent.addEventListener('click', editTask);
+
+function editTask(event) {
+  if (event.target.dataset.action !== 'edit') 
+    return;
+
+  const taskElement = event.target.closest('.list__current-note');
+
+  const taskTitle = taskElement.querySelector('.current-main__left__title').innerText;
+  const taskDetails = taskElement.querySelector('.current-note__info__text').innerText;
+  const taskDate = taskElement.querySelector('.current-main__right__date').innerText;
+
+  const modal = document.getElementById('editModal');
+  modal.style.display = 'block';
+  document.getElementById('editNoteTitle').value = taskTitle;
+  document.getElementById('editNoteInfo').value = taskDetails;
+  document.getElementById('editNoteDate').value = taskDate;
+
+  editbtn.addEventListener('click', function() {
+    let index = todoList.findIndex(item => item.noteTitle === taskTitle);
+    let todoItem = todoList[index];
+    if (todoItem) {
+      todoItem.noteTitle = document.getElementById('editNoteTitle').value;
+      todoItem.noteInfo = document.getElementById('editNoteInfo').value;
+      todoItem.noteDate = document.getElementById('editNoteDate').value;
+
+      localStorage.setItem('todo', JSON.stringify(todoList));
+    }
+    displayCurrentMessages();
+    Editmodal.style.display = "none";
+  });
+}
+
+let editbtn = document.getElementById("editTask");
+let Editmodal = document.getElementById("editModal");
+let Editspan = document.getElementById("editModalClose");
+
+editbtn.onclick = function() {
+  Editmodal.style.display = "block";
+}
+
+Editspan.onclick = function() {
+  Editmodal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == Editmodal) {
+    Editmodal.style.display = "none";
   }
 }
 
-// todoCurrent.addEventListener('click', editTask);
+todoCurrent.addEventListener('click', GetInfo);
 
-// function editTask(button) {
-//   // Получаем родительский элемент задачи
-//   const taskElement = button.closest('.container-current-note');
+function GetInfo(event) {
+  if (event.target.dataset.action !== 'info') 
+    return;
 
-//   // Получаем значения полей задачи
-//   const taskTitle = taskElement.querySelector('.container-current-note-left-title').innerText;
-//   const taskDetails = taskElement.querySelector('.container-current-note-info-text').innerText;
-//   const taskDate = taskElement.querySelector('.container-current-note-right-date').innerText;
-  
-//   // Показываем модальное окно и устанавливаем значения полей
-//   const modal = document.getElementById('myModal');
-//   modal.style.display = 'block';
-//   document.getElementById('noteTitle').value = taskTitle;
-//   document.querySelector('.modal-main-content-details-note').value = taskDetails;
-//   document.querySelector('.modal-main-content-date-note').value = taskDate;
-// }
+  let id = event.target.getAttribute('data-id');
+  let infoDiv = document.getElementById(`more-info_${id}`);
+  infoDiv.style.display = infoDiv.style.display === 'none' ? 'block' : 'none';
+}

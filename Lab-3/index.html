@@ -21,7 +21,6 @@
         </div>
     </header>
     <div class="container">
-        
 
         <!-- The Modal -->
         <div id="myModal" class="modal">
@@ -32,7 +31,7 @@
                         <h2>New Task</h2>
                     </div>
                     <div>
-                        <span class="close">&times;</span>
+                        <span class="close" id="ModalClose">&times;</span>
                     </div>
                 </div>
                 <div class="modal__main-content">
@@ -43,6 +42,31 @@
                     <p class="main-content__date">Due date</p>
                     <input class="date__note" type="date" autocomplete="off">
                     <button class="create-button" id="createTask">Create task</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- The Edit Modal -->
+        <div id="editModal" class="modal">
+            <!-- Edit Modal content -->
+            <div class="modal-content">
+                <div class="modal-content__header">
+                    <div>
+                        <h2>Edit Task</h2>
+                    </div>
+                    <div>
+                        <span class="close" id="editModalClose">&times;</span>
+                    </div>
+                </div>
+                <div class="modal__main-content">
+                    <p class="main-content__title">Title</p>
+                    <input class="title__note" id="editNoteTitle" type="text">
+                    <p class="main-content__details">Details (notes)</p>
+                    <textarea class="details__note" id="editNoteInfo" placeholder="Important details of your task..." dir="auto"></textarea>
+                    <p class="main-content__date">Due date</p>
+                    <input class="date__note" id="editNoteDate" type="date" autocomplete="off">
+                    <button class="create-button" id="editTask">Edit task</button>
                 </div>
             </div>
         </div>
@@ -84,7 +108,7 @@
             </div>
             <div class="container__completed-notes">
                 <ul class="completed-notes__list">
-                    <li class="list__completed-note">
+                    <!-- <li class="list__completed-note">
                         <div class="completed-note__main">
                             <div class="completed-main__left">
                                 <input class="completed-main__left__checkbox" type="checkbox" checked style="background-color: black;">
@@ -93,14 +117,18 @@
                             </div>
                             <div class="completed-main__right">
                                 <span class="completed-main__right__date">Fri Apr 07, 2023</span>
-                                <span class="completed-main__right__edit">&#9998;</span>
-                                <span class="completed-main__right__delete">&#128465;</span>
+                                <button style="border: none;">
+                                    <span class="completed-main__right__edit">&#9998;</span>
+                                </button>
+                                <button data-action="delete" style="border: none;" data-id='${i}'>
+                                    <span class="completed-main__right__delete">&#128465;</span>
+                                </button>
                             </div>
                         </div>
                         <div class="completed-note__info" id="more-info">
                             <p class="completed-note__info__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula quam velit, quis accumsan enim malesuada in. Aenean ultricies nibh a ex commodo consequat. Nulla facilisi. Nullam tincidunt elementum mauris, sed sodales leo malesuada eget. Phasellus scelerisque libero vel massa interdum, sed suscipit libero fringilla. Maecenas eget dui varius, blandit orci eget, dapibus dolor. Sed a diam tincidunt, aliquet tellus sed, faucibus lectus. Nulla in semper nunc, quis vestibulum augue.</p>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
