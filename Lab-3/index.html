@@ -1,90 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen" charset="utf-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="css/index.css"
+      type="text/css"
+      media="screen"
+      charset="utf-8"
+    />
     <title>To-Do</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="header-title">
-            <a href="index.html">To-Do</a>
-        </div>
-        <div class="header-links">
-            <a class="header-links__signin" href="html/SignIn.html">Sign In</a>
-            <a class="header-links__signup" href="html/SignUp.html">Sign Up</a>
-            <a class="header-links__exit" href="#">Exit</a>
-            <a class="header-links__username">username</a>
-        </div>
+      <div class="header-title">
+        <a href="index.html">To-Do</a>
+      </div>
+      <div class="header-links" id="link">
+        <a class="header-links__signin" href="html/SignIn.html">Sign In</a>
+        <a class="header-links__signup" href="html/SignUp.html">Sign Up</a>
+        <a type="button" class="header-links__exit" href="#">Exit</a>
+        <!-- <a class="header-links__username"></a> -->
+      </div>
     </header>
     <div class="container">
-
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-content__header">
-                    <div>
-                        <h2>New Task</h2>
-                    </div>
-                    <div>
-                        <span class="close" id="ModalClose">&times;</span>
-                    </div>
-                </div>
-                <div class="modal__main-content">
-                    <p class="main-content__title">Title</p>
-                    <input class="title__note" id="noteTitle" type="text">
-                    <p class="main-content__details">Details (notes)</p>
-                    <textarea class="details__note" placeholder="Important details of your task..." dir="auto"></textarea>
-                    <p class="main-content__date">Due date</p>
-                    <input class="date__note" type="date" autocomplete="off">
-                    <button class="create-button" id="createTask">Create task</button>
-                </div>
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-content__header">
+            <div>
+              <h2>New Task</h2>
             </div>
+            <div>
+              <span class="close" id="ModalClose">&times;</span>
+            </div>
+          </div>
+          <div class="modal__main-content">
+            <p class="main-content__title">Title</p>
+            <input class="title__note" id="noteTitle" type="text" />
+            <p class="main-content__details">Details (notes)</p>
+            <textarea
+              class="details__note"
+              placeholder="Important details of your task..."
+              dir="auto"
+            ></textarea>
+            <p class="main-content__date">Due date</p>
+            <input class="date__note" type="date" autocomplete="off" />
+            <button class="create-button" id="createTask">Create task</button>
+          </div>
         </div>
+      </div>
 
-
-        <!-- The Edit Modal -->
-        <div id="editModal" class="modal">
-            <!-- Edit Modal content -->
-            <div class="modal-content">
-                <div class="modal-content__header">
-                    <div>
-                        <h2>Edit Task</h2>
-                    </div>
-                    <div>
-                        <span class="close" id="editModalClose">&times;</span>
-                    </div>
-                </div>
-                <div class="modal__main-content">
-                    <p class="main-content__title">Title</p>
-                    <input class="title__note" id="editNoteTitle" type="text">
-                    <p class="main-content__details">Details (notes)</p>
-                    <textarea class="details__note" id="editNoteInfo" placeholder="Important details of your task..." dir="auto"></textarea>
-                    <p class="main-content__date">Due date</p>
-                    <input class="date__note" id="editNoteDate" type="date" autocomplete="off">
-                    <button class="create-button" id="editTask">Edit task</button>
-                </div>
+      <!-- The Edit Modal -->
+      <div id="editModal" class="modal">
+        <!-- Edit Modal content -->
+        <div class="modal-content">
+          <div class="modal-content__header">
+            <div>
+              <h2>Edit Task</h2>
             </div>
+            <div>
+              <span class="close" id="editModalClose">&times;</span>
+            </div>
+          </div>
+          <div class="modal__main-content">
+            <p class="main-content__title">Title</p>
+            <input class="title__note" id="editNoteTitle" type="text" />
+            <p class="main-content__details">Details (notes)</p>
+            <textarea
+              class="details__note"
+              id="editNoteInfo"
+              placeholder="Important details of your task..."
+              dir="auto"
+            ></textarea>
+            <p class="main-content__date">Due date</p>
+            <input
+              class="date__note"
+              id="editNoteDate"
+              type="date"
+              autocomplete="off"
+            />
+            <button class="create-button" id="editTask">Edit task</button>
+          </div>
         </div>
+      </div>
 
-        <div class="scroll">
-            <div class="container__add-note">
-                <button id="myBtn" class="add-button">+ Add new task</button>
-            </div>
-            <div class="container__current-notes-header">
-                <p class="titles">To-Do</p>
-            </div>
-            <div class="container__current-notes">
-                <div class="tasks-empty">
-                    <img src="src/walking-outside.png" alt="A women walking in the park" class="tasks-empty__img">
-                    <p style="font-size: 16px;">You don't have any tasks, just relax!</p>
-                </div>
-                <ul class="current-notes__list">
-                    <!-- <li class="list__current-note">
+      <div class="scroll">
+        <div class="container__add-note">
+          <button id="myBtn" class="add-button">+ Add new task</button>
+        </div>
+        <div class="container__current-notes-header">
+          <p class="titles">To-Do</p>
+        </div>
+        <div class="container__current-notes">
+          <div class="tasks-empty">
+            <img
+              src="src/walking-outside.png"
+              alt="A women walking in the park"
+              class="tasks-empty__img"
+            />
+            <p style="font-size: 16px">You don't have any tasks, just relax!</p>
+          </div>
+          <ul class="current-notes__list">
+            <!-- <li class="list__current-note">
                         <div class="current-note__main">
                             <div class="current-main__left">
                                 <input class="current-main__left__checkbox" type="checkbox">
@@ -101,14 +123,14 @@
                             <p class="current-note__info__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula quam velit, quis accumsan enim malesuada in. Aenean ultricies nibh a ex commodo consequat. Nulla facilisi. Nullam tincidunt elementum mauris, sed sodales leo malesuada eget. Phasellus scelerisque libero vel massa interdum, sed suscipit libero fringilla. Maecenas eget dui varius, blandit orci eget, dapibus dolor. Sed a diam tincidunt, aliquet tellus sed, faucibus lectus. Nulla in semper nunc, quis vestibulum augue.</p>
                         </div>
                     </li> -->
-                </ul>
-            </div>
-            <div class="container__completed-notes-header">
-                <p class="titles">Completed tasks</p>
-            </div>
-            <div class="container__completed-notes">
-                <ul class="completed-notes__list">
-                    <!-- <li class="list__completed-note">
+          </ul>
+        </div>
+        <div class="container__completed-notes-header">
+          <p class="titles">Completed tasks</p>
+        </div>
+        <div class="container__completed-notes">
+          <ul class="completed-notes__list">
+            <!-- <li class="list__completed-note">
                         <div class="completed-note__main">
                             <div class="completed-main__left">
                                 <input class="completed-main__left__checkbox" type="checkbox" checked style="background-color: black;">
@@ -129,10 +151,10 @@
                             <p class="completed-note__info__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula quam velit, quis accumsan enim malesuada in. Aenean ultricies nibh a ex commodo consequat. Nulla facilisi. Nullam tincidunt elementum mauris, sed sodales leo malesuada eget. Phasellus scelerisque libero vel massa interdum, sed suscipit libero fringilla. Maecenas eget dui varius, blandit orci eget, dapibus dolor. Sed a diam tincidunt, aliquet tellus sed, faucibus lectus. Nulla in semper nunc, quis vestibulum augue.</p>
                         </div>
                     </li> -->
-                </ul>
-            </div>
+          </ul>
         </div>
+      </div>
     </div>
-</body>
-<script src="js/index.js"></script>
+  </body>
+  <script type="module" src="js/index.js"></script>
 </html>

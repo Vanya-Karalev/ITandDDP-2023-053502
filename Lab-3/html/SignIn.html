@@ -1,38 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/SignIn.css" type="text/css" media="screen" charset="utf-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../css/SignIn.css"
+      type="text/css"
+      media="screen"
+      charset="utf-8"
+    />
     <title>To-Do</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="header-title">
-            <a href="../index.html">To-Do</a>
-        </div>
-        <div class="header-links">
-            <a class="header-links__signin" href="SignIn.html">Sign In</a>
-            <a class="header-links__signup" href="SignUp.html">Sign Up</a>
-            <a class="header-links__exit" href="#">Exit</a>
-            <a class="header-links__username">username</a>
-        </div>
+      <div class="header-title">
+        <a href="../index.html">To-Do</a>
+      </div>
+      <div class="header-links">
+        <a class="header-links__signin" href="SignIn.html">Sign In</a>
+        <a class="header-links__signup" href="SignUp.html">Sign Up</a>
+      </div>
     </header>
     <div class="container">
       <div class="login-page">
         <h1 class="login-page__header">Sign In</h1>
-          <form class="login-form">
-            <label class="form__username">Username:</label>
-            <input class="form__input-username" type="text" placeholder="username"/>
-            <label class="form__password">Password:</label>
-            <input class="form__input-password" type="password" placeholder="password"/>
-            <button class="form__signin">Sign In</button>
-          </form>
-          <p class="message">Not registered? <a href="SignUp.html">Create an account</a></p>
+        <form class="login-form">
+          <label class="form__username">Email:</label>
+          <input
+            class="form__input-username"
+            type="text"
+            placeholder="email"
+            id="username"
+          />
+          <label class="form__password">Password:</label>
+          <input
+            class="form__input-password"
+            type="password"
+            placeholder="password"
+            id="password"
+          />
+          <button type="button" class="form__signin" id="submitData">
+            Sign In
+          </button>
+        </form>
+        <p class="message">
+          Not registered? <a href="SignUp.html">Create an account</a>
+        </p>
       </div>
     </div>
-</body>
-<script src="../js/SignIn.js"></script>
+  </body>
+  <script type="module" src="../js/SignIn.js"></script>
 </html>
