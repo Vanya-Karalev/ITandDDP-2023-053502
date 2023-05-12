@@ -40,6 +40,7 @@ let emptyTasks = document.querySelector(".tasks-empty");
 if (localStorage.getItem('todo')) {
   todoList = JSON.parse(localStorage.getItem('todo'));
   displayCurrentMessages();
+  displayCompletedMessages();
 }
 
 function CreateNewTodo() {
@@ -58,6 +59,7 @@ function CreateNewTodo() {
 
   todoList.unshift(newToDo);
   displayCurrentMessages();
+  displayCompletedMessages();
   localStorage.setItem('todo', JSON.stringify(todoList));
 
   noteTitle.value = '';
@@ -72,73 +74,79 @@ function displayCurrentMessages() {
 
   let displayMessage = '';
 
-  if (todoList.length > 0) {
+  todoList.forEach(function(item, i) {
+    if (item.checked === false) {
+
+      displayMessage += `
+      <li class="list__current-note">
+        <div class="current-note__main">
+            <div class="current-main__left">
+                <input class="current-main__left__checkbox" type="checkbox" ${item.checked ? 'checked' : ''} id='item_${i}'>
+                <p class="current-main__left__title" for='item_${i}'>${item.noteTitle}</p>
+                <button id="button-down" data-action="info" data-id='${i}' style="border: none; ${item.noteInfo ? '' : 'display: none;'}"><span class="down">&#8595;</span></button>
+            </div>
+            <div class="current-main__right">
+                <span class="current-main__right__date">${item.noteDate ? item.noteDate : 'No date'}</span>
+                <button data-action="edit" style="border: none;" data-id='${i}'>
+                  <span class="current-main__right__edit">&#9998;</span>
+                </button>
+                <button data-action="delete" style="border: none;" data-id='${i}'>
+                  <span class="current-main__right__delete">&#128465;</span>
+                </button>
+            </div>
+        </div>
+        <div class="current-note__info" id="more-info_${i}" style="display: none;">
+            <p class="current-note__info__text">${item.noteInfo}</p>
+        </div>
+      </li>
+      `;
+    }
+  });
+
+  if (todoList.length > 0 && displayMessage !== '') {
     emptyTasks.style.display = 'none';
   } else {
     emptyTasks.style = 'width: 100%; align-items: center; display: flex; flex-direction: column;';
   }
 
-  todoList.forEach(function(item, i) {
-    displayMessage += `
-    <li class="list__current-note">
-      <div class="current-note__main">
-          <div class="current-main__left">
-              <input class="current-main__left__checkbox" type="checkbox" ${item.checked ? 'checked' : ''} id='item_${i}'>
-              <p class="current-main__left__title" for='item_${i}'>${item.noteTitle}</p>
-              <button id="button-down" data-action="info" data-id='${i}' style="border: none; ${item.noteInfo ? '' : 'display: none;'}"><span class="down">&#8595;</span></button>
-          </div>
-          <div class="current-main__right">
-              <span class="current-main__right__date">${item.noteDate ? item.noteDate : 'No date'}</span>
-              <button data-action="edit" style="border: none;" data-id='${i}'>
-                <span class="current-main__right__edit">&#9998;</span>
-              </button>
-              <button data-action="delete" style="border: none;" data-id='${i}'>
-                <span class="current-main__right__delete">&#128465;</span>
-              </button>
-          </div>
-      </div>
-      <div class="current-note__info" id="more-info_${i}" style="display: none;">
-          <p class="current-note__info__text">${item.noteInfo}</p>
-      </div>
-    </li>
-    `;
-  });
-
   todoCurrent.innerHTML = displayMessage;
 };
+
 
 function displayCompletedMessages() {
 
   let displayMessage = '';
 
   todoList.forEach(function(item, i) {
-    
-    displayMessage += `
-    <li class="list__completed-note">
-      <div class="completed-note__main">
-          <div class="completed-main__left">
-              <input class="completed-main__left__checkbox" type="checkbox" ${item.checked ? 'checked' : ''} id='item_${i}'>
-              <p class="completed-main__left__title" for='item_${i}'>${item.noteTitle}</p>
-              <button id="button-down" data-action="info" data-id='${i}' style="border: none; ${item.noteInfo ? '' : 'display: none;'}"><span class="down">&#8595;</span></button>
-          </div>
-          <div class="completed-main__right">
-              <span class="completed-main__right__date">${item.noteDate ? item.noteDate : 'No date'}</span>
-              <button data-action="edit" style="border: none;" data-id='${i}'>
-                <span class="completed-main__right__edit">&#9998;</span>
-              </button>
-              <button data-action="delete" style="border: none;" data-id='${i}'>
-                <span class="completed-main__right__delete">&#128465;</span>
-              </button>
-          </div>
-      </div>
-      <div class="completed-note__info" id="more-info_${i}" style="display: none;">
-          <p class="completed-note__info__text">${item.noteInfo}</p>
-      </div>
-    </li>
-    `;
+    if (item.checked === true) {
+
+      displayMessage += `
+      <li class="list__completed-note">
+        <div class="completed-note__main">
+            <div class="completed-main__left">
+                <input class="completed-main__left__checkbox" type="checkbox" ${item.checked ? 'checked' : ''} id='item_${i}'>
+                <p class="completed-main__left__title" for='item_${i}'>${item.noteTitle}</p>
+                <button id="button-down" data-action="info" data-id='${i}' style="border: none; ${item.noteInfo ? '' : 'display: none;'}"><span class="down">&#8595;</span></button>
+            </div>
+            <div class="completed-main__right">
+                <span class="completed-main__right__date">${item.noteDate ? item.noteDate : 'No date'}</span>
+                <button data-action="edit" style="border: none;" data-id='${i}'>
+                  <span class="completed-main__right__edit">&#9998;</span>
+                </button>
+                <button data-action="delete" style="border: none;" data-id='${i}'>
+                  <span class="completed-main__right__delete">&#128465;</span>
+                </button>
+            </div>
+        </div>
+        <div class="completed-note__info" id="more-info_${i}" style="display: none;">
+            <p class="completed-note__info__text">${item.noteInfo}</p>
+        </div>
+      </li>
+      `;
+    }
   });
 
-  todoCurrent.innerHTML = displayMessage;
+  todoCompleted.innerHTML = displayMessage;
 };
 
 todoCurrent.addEventListener('change', function(event) {
@@ -148,12 +156,29 @@ todoCurrent.addEventListener('change', function(event) {
   todoList.forEach(function(item){
     if (item.noteTitle === valueP) {
       item.checked = !item.checked;
+      displayCurrentMessages();
+      displayCompletedMessages();
+      localStorage.setItem('todo', JSON.stringify(todoList));
+    }
+  })
+})
+
+todoCompleted.addEventListener('change', function(event) {
+  let id = event.target.getAttribute('id');
+  let valueP = todoCompleted.querySelector('[for=' + id + ']').innerHTML;
+
+  todoList.forEach(function(item){
+    if (item.noteTitle === valueP) {
+      item.checked = !item.checked;
+      displayCurrentMessages();
+      displayCompletedMessages();
       localStorage.setItem('todo', JSON.stringify(todoList));
     }
   })
 })
 
 todoCurrent.addEventListener('click', deleteTask);
+todoCompleted.addEventListener('click', deleteTask);
 
 function deleteTask(event) {
   if (event.target.dataset.action !== 'delete') 
@@ -162,11 +187,13 @@ function deleteTask(event) {
   let id = event.target.getAttribute('data-id');
   todoList.splice(id, 1);
   displayCurrentMessages();
+  displayCompletedMessages();
   localStorage.setItem('todo', JSON.stringify(todoList));
 
 }
 
 todoCurrent.addEventListener('click', editTask);
+todoCompleted.addEventListener('click', editTask);
 
 function editTask(event) {
   if (event.target.dataset.action !== 'edit') 
@@ -195,6 +222,7 @@ function editTask(event) {
       localStorage.setItem('todo', JSON.stringify(todoList));
     }
     displayCurrentMessages();
+    displayCompletedMessages();
     Editmodal.style.display = "none";
   });
 }
@@ -218,6 +246,7 @@ window.onclick = function(event) {
 }
 
 todoCurrent.addEventListener('click', GetInfo);
+todoCompleted.addEventListener('click', GetInfo);
 
 function GetInfo(event) {
   if (event.target.dataset.action !== 'info') 
