@@ -283,7 +283,7 @@ a {
 }
 
 
-.current-main__right__edit, .current-main__right__delete, .down {
+.current-main__right__edit, .current-main__right__delete, .down, .completed-main__right__delete, .completed-main__right__edit {
     pointer-events: none;
 }
 

@@ -192,10 +192,10 @@ function deleteTask(event) {
 
 }
 
-todoCurrent.addEventListener('click', editTask);
-todoCompleted.addEventListener('click', editTask);
+todoCurrent.addEventListener('click', editCurrentTask);
+todoCompleted.addEventListener('click', editCompletedTask);
 
-function editTask(event) {
+function editCurrentTask(event) {
   if (event.target.dataset.action !== 'edit') 
     return;
 
@@ -204,6 +204,38 @@ function editTask(event) {
   const taskTitle = taskElement.querySelector('.current-main__left__title').innerText;
   const taskDetails = taskElement.querySelector('.current-note__info__text').innerText;
   const taskDate = taskElement.querySelector('.current-main__right__date').innerText;
+
+  const modal = document.getElementById('editModal');
+  modal.style.display = 'block';
+  document.getElementById('editNoteTitle').value = taskTitle;
+  document.getElementById('editNoteInfo').value = taskDetails;
+  document.getElementById('editNoteDate').value = taskDate;
+
+  editbtn.addEventListener('click', function() {
+    let index = todoList.findIndex(item => item.noteTitle === taskTitle);
+    let todoItem = todoList[index];
+    if (todoItem) {
+      todoItem.noteTitle = document.getElementById('editNoteTitle').value;
+      todoItem.noteInfo = document.getElementById('editNoteInfo').value;
+      todoItem.noteDate = document.getElementById('editNoteDate').value;
+
+      localStorage.setItem('todo', JSON.stringify(todoList));
+    }
+    displayCurrentMessages();
+    displayCompletedMessages();
+    Editmodal.style.display = "none";
+  });
+}
+
+function editCompletedTask(event) {
+  if (event.target.dataset.action !== 'edit') 
+    return;
+
+  const taskElement = event.target.closest('.list__completed-note');
+
+  const taskTitle = taskElement.querySelector('.completed-main__left__title').innerText;
+  const taskDetails = taskElement.querySelector('.completed-note__info__text').innerText;
+  const taskDate = taskElement.querySelector('.completed-main__right__date').innerText;
 
   const modal = document.getElementById('editModal');
   modal.style.display = 'block';
