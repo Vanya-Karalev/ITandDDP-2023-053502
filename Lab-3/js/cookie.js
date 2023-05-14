@@ -1,6 +1,8 @@
+import { signOut } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+import { auth } from "./config.js";
+
 function createCookie(uid) {
     document.cookie = `user=${uid};`
-    console.log(document.cookie)
 }
 
 function checkAuth() {
@@ -9,20 +11,25 @@ function checkAuth() {
     if (userCookie) {
         return true
     }
-
     return false
+}
+
+function logOut() {
+    signOut(auth).then(() => {
+        document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.replace("SignIn.html");
+    }).catch((error) => {
+        console.error(error.message)
+    })
 }
 
 function getUserId() {
     if (checkAuth()) {
-        const userCookie = document.cookie
+        return document.cookie
             .split('; ')
-            .find(row => row.startsWith('user='));
-        if (userCookie) {
-            return userCookie.split('=')[1];
-        }
+            .find(row => row.startsWith('user='))
+            .split('=')[1];
     }
-    return null;
 }
 
-export { createCookie, checkAuth, getUserId };
+export { createCookie, checkAuth, getUserId, logOut }

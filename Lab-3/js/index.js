@@ -1,51 +1,51 @@
-import { checkAuth, getUserId } from "./cookie.js";
+import { checkAuth, getUserId, logOut } from "./cookie.js";
 import { database } from "./config.js";
-import {ref, get } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+import { ref, get, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
-const result = checkAuth();
+
 const userId = getUserId();
 console.log(userId);
 
-if (userId) {
-    get(ref(database, "users/" + userId))
-    .then((snapshot) => {
-        if (snapshot.exists()) {
-            const email = snapshot.val().email;
-            console.log(email);
-        } else {
-            console.log("No data available");
-        }
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+function getEmail(uid) {
+  const databaseRef = ref(database, `users/${uid}`);
+  return get(databaseRef).then((snapshot) => {
+    const user = snapshot.val();
+    return user.email;
+  }).catch((error) => {
+    console.log(error);
+    return 'undefined';
+  });
 }
 
 let signup = document.querySelector(".header-links__signup");
 let signin = document.querySelector(".header-links__signin");
-let exit = document.querySelector(".header-links__exit");
 let links = document.getElementById("link");
+const result = checkAuth();
 
-if (result == false) {
-    signup.style.display = "none";
-    signin.style.display = "none";
-    links.innerHTML += `<a class="header-links__username">saltyclone@mail.ru</a>`;
-} else {
-    exit.style.display = "none";
+if (result == true) {
+  signup.style.display = "none";
+  signin.style.display = "none";
+
+  getEmail(userId).then((mail) => {
+    links.innerHTML = `
+      <a class="header-links__username">${mail}</a>
+      <a type="button" class="header-links__exit" href="#">Exit</a>
+    `;
+  }).catch((error) => {
+    console.log(error);
+  });
 }
 
-exit.onclick = function () {
-    document.cookie = "";
-    window.location.replace("../html/SignIn.html");
-};
 
-// Get the modal
+links.addEventListener("click", function(event) {
+    if (event.target.classList.contains("header-links__exit")) {
+        logOut();
+    }
+});
+
+
 let modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
 let btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
 let span = document.getElementById("ModalClose");
 
 // When the user clicks on the button, open the modal
@@ -56,13 +56,6 @@ btn.onclick = function () {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
   modal.style.display = "none";
-};
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
 };
 
 let todoList = [];
@@ -77,11 +70,24 @@ let todoCompleted = document.querySelector(".completed-notes__list");
 
 let emptyTasks = document.querySelector(".tasks-empty");
 
-if (localStorage.getItem("todo")) {
-  todoList = JSON.parse(localStorage.getItem("todo"));
-  displayCurrentMessages();
-  displayCompletedMessages();
-}
+// if (localStorage.getItem("todo")) {
+//   todoList = JSON.parse(localStorage.getItem("todo"));
+//   displayCurrentMessages();
+//   displayCompletedMessages();
+// }
+
+const databaseRef = ref(database, `todos/${userId}`);
+onValue(databaseRef, (snapshot) => {
+  const data = snapshot.val();
+  if (data) {
+    const todoKey = Object.keys(data)[0];
+    // console.log(data[todoKey]);
+    todoList = data[todoKey];
+    displayCurrentMessages();
+    displayCompletedMessages();
+  }
+});
+
 
 function CreateNewTodo() {
   let newToDo = {
@@ -97,9 +103,27 @@ function CreateNewTodo() {
   }
 
   todoList.unshift(newToDo);
-  displayCurrentMessages();
-  displayCompletedMessages();
-  localStorage.setItem("todo", JSON.stringify(todoList));
+//   displayCurrentMessages();
+//   displayCompletedMessages();
+//   localStorage.setItem("todo", JSON.stringify(todoList));
+
+    const databaseRef = ref(database, `todos/${userId}`);
+    remove(databaseRef).then(() => {
+        push(databaseRef, todoList)
+        .then(() => {
+            displayCurrentMessages();
+            displayCompletedMessages();
+        })
+        .catch((error) => {
+            console.log(error);
+            alert("Failed to save todo to database.");
+        });
+    }).catch((error) => {
+        console.log(error);
+        alert("Failed to remove old todo data from database.");
+    });
+
+
 
   noteTitle.value = "";
   noteInfo.value = "";
@@ -207,9 +231,25 @@ todoCurrent.addEventListener("change", function (event) {
   todoList.forEach(function (item) {
     if (item.noteTitle === valueP) {
       item.checked = !item.checked;
-      displayCurrentMessages();
-      displayCompletedMessages();
-      localStorage.setItem("todo", JSON.stringify(todoList));
+    //   displayCurrentMessages();
+    //   displayCompletedMessages();
+    //   localStorage.setItem("todo", JSON.stringify(todoList));
+    const databaseRef = ref(database, `todos/${userId}`);
+    remove(databaseRef).then(() => {
+        push(databaseRef, todoList)
+        .then(() => {
+            displayCurrentMessages();
+            displayCompletedMessages();
+        })
+        .catch((error) => {
+            console.log(error);
+            alert("Failed to save todo to database.");
+        });
+    }).catch((error) => {
+        console.log(error);
+        alert("Failed to remove old todo data from database.");
+    });
+
     }
   });
 });
@@ -221,9 +261,24 @@ todoCompleted.addEventListener("change", function (event) {
   todoList.forEach(function (item) {
     if (item.noteTitle === valueP) {
       item.checked = !item.checked;
-      displayCurrentMessages();
-      displayCompletedMessages();
-      localStorage.setItem("todo", JSON.stringify(todoList));
+    //   displayCurrentMessages();
+    //   displayCompletedMessages();
+    //   localStorage.setItem("todo", JSON.stringify(todoList));
+    const databaseRef = ref(database, `todos/${userId}`);
+    remove(databaseRef).then(() => {
+        push(databaseRef, todoList)
+        .then(() => {
+            displayCurrentMessages();
+            displayCompletedMessages();
+        })
+        .catch((error) => {
+            console.log(error);
+            alert("Failed to save todo to database.");
+        });
+    }).catch((error) => {
+        console.log(error);
+        alert("Failed to remove old todo data from database.");
+    });
     }
   });
 });
@@ -236,9 +291,24 @@ function deleteTask(event) {
 
   let id = event.target.getAttribute("data-id");
   todoList.splice(id, 1);
-  displayCurrentMessages();
-  displayCompletedMessages();
-  localStorage.setItem("todo", JSON.stringify(todoList));
+//   displayCurrentMessages();
+//   displayCompletedMessages();
+//   localStorage.setItem("todo", JSON.stringify(todoList));
+    const databaseRef = ref(database, `todos/${userId}`);
+    remove(databaseRef).then(() => {
+        push(databaseRef, todoList)
+        .then(() => {
+            displayCurrentMessages();
+            displayCompletedMessages();
+        })
+        .catch((error) => {
+            console.log(error);
+            alert("Failed to save todo to database.");
+        });
+    }).catch((error) => {
+        console.log(error);
+        alert("Failed to remove old todo data from database.");
+    });
 }
 
 todoCurrent.addEventListener("click", editCurrentTask);
@@ -273,7 +343,22 @@ function editCurrentTask(event) {
       todoItem.noteInfo = document.getElementById("editNoteInfo").value;
       todoItem.noteDate = document.getElementById("editNoteDate").value;
 
-      localStorage.setItem("todo", JSON.stringify(todoList));
+    //   localStorage.setItem("todo", JSON.stringify(todoList));
+        const databaseRef = ref(database, `todos/${userId}`);
+        remove(databaseRef).then(() => {
+            push(databaseRef, todoList)
+            .then(() => {
+                // displayCurrentMessages();
+                // displayCompletedMessages();
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("Failed to save todo to database.");
+            });
+        }).catch((error) => {
+            console.log(error);
+            alert("Failed to remove old todo data from database.");
+        });
     }
     displayCurrentMessages();
     displayCompletedMessages();
@@ -310,7 +395,22 @@ function editCompletedTask(event) {
       todoItem.noteInfo = document.getElementById("editNoteInfo").value;
       todoItem.noteDate = document.getElementById("editNoteDate").value;
 
-      localStorage.setItem("todo", JSON.stringify(todoList));
+    //   localStorage.setItem("todo", JSON.stringify(todoList));
+        const databaseRef = ref(database, `todos/${userId}`);
+        remove(databaseRef).then(() => {
+            push(databaseRef, todoList)
+            .then(() => {
+                // displayCurrentMessages();
+                // displayCompletedMessages();
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("Failed to save todo to database.");
+            });
+        }).catch((error) => {
+            console.log(error);
+            alert("Failed to remove old todo data from database.");
+        });
     }
     displayCurrentMessages();
     displayCompletedMessages();
@@ -333,6 +433,8 @@ Editspan.onclick = function () {
 window.onclick = function (event) {
   if (event.target == Editmodal) {
     Editmodal.style.display = "none";
+  } else if (event.target == modal) {
+    modal.style.display = "none";
   }
 };
 
