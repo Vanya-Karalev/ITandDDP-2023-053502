@@ -4,7 +4,6 @@ import { ref, get, push, onValue, remove } from "https://www.gstatic.com/firebas
 
 
 const userId = getUserId();
-console.log(userId);
 
 function getEmail(uid) {
   const databaseRef = ref(database, `users/${uid}`);
@@ -34,6 +33,9 @@ if (result == true) {
   }).catch((error) => {
     console.log(error);
   });
+} else {
+    document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location.replace("SignIn.html");
 }
 
 
@@ -449,89 +451,86 @@ function GetInfo(event) {
   infoDiv.style.display = infoDiv.style.display === "none" ? "block" : "none";
 }
 
-// const sortableList = document.querySelector(".current-notes__list");
-// const items = document.querySelectorAll(".list__current-note");
 
-// items.forEach(item => {
-//   item.addEventListener("dragstart", () => {
-//     setTimeout(() => item.classList.add("dragging"), 0);
-//   });
-//   item.addEventListener("dragend", () => item.classList.remove("dragging"));
-// });
 
-// const initSortableList = (e) => {
-//   const draggingItem = sortableList.querySelector(".dragging");
-//   const siblings = [...sortableList.querySelectorAll(".list__current-note:not(.dragging)")];
-//   let nextSibling = siblings.find(sibling => {
-//     return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
-//   });
-//   sortableList.insertBefore(draggingItem, nextSibling);
-// }
 
-// sortableList.addEventListener("dragover", initSortableList);
 
-slist(document.querySelector(".current-notes__list"));
-function slist(target) {
-  target.classList.add("slist");
-  let items = target.getElementsByTagName("li"),
-    current = null;
 
-  // (B) MAKE ITEMS DRAGGABLE + SORTABLE
-  for (let i of items) {
-    // (B1) ATTACH DRAGGABLE
-    i.draggable = true;
 
-    // (B2) DRAG START - YELLOW HIGHLIGHT DROPZONES
-    i.ondragstart = (e) => {
-      current = i;
-      for (let it of items) {
-        if (it != current) {
-          it.classList.add("hint");
-        }
+
+
+
+const columns = document.querySelectorAll(".current-notes__list");
+
+let dragging = null;
+
+document.addEventListener("dragstart", (e) => {
+  dragging = e.target;
+  dragging.classList.add("dragging");
+});
+
+document.addEventListener("dragend", (e) => {
+  dragging.classList.remove("dragging");
+  dragging = null;
+});
+
+columns.forEach((item) => {
+  item.addEventListener("dragover", (e) => {
+    e.preventDefault();
+
+    if (dragging) {
+      const applyAfter = getNewPosition(item, e.clientY);
+
+      if (applyAfter) {
+        applyAfter.insertAdjacentElement("afterend", dragging);
+      } else {
+        item.prepend(dragging);
       }
-    };
+    }
+  });
+});
 
-    // (B3) DRAG ENTER - RED HIGHLIGHT DROPZONE
-    i.ondragenter = (e) => {
-      if (i != current) {
-        i.classList.add("active");
-      }
-    };
+function getNewPosition(column, posY) {
+  const cards = column.querySelectorAll(".list__current-note:not(.dragging)");
+  let result;
 
-    // (B4) DRAG LEAVE - REMOVE RED HIGHLIGHT
-    i.ondragleave = () => i.classList.remove("active");
+  for (let refer_card of cards) {
+    const box = refer_card.getBoundingClientRect();
+    const boxCenterY = box.y + box.height / 2;
 
-    // (B5) DRAG END - REMOVE ALL HIGHLIGHTS
-    i.ondragend = () => {
-      for (let it of items) {
-        it.classList.remove("hint");
-        it.classList.remove("active");
-      }
-    };
-
-    // (B6) DRAG OVER - PREVENT THE DEFAULT "DROP", SO WE CAN DO OUR OWN
-    i.ondragover = (e) => e.preventDefault();
-
-    // (B7) ON DROP - DO SOMETHING
-    i.ondrop = (e) => {
-      e.preventDefault();
-      if (i != current) {
-        let currentpos = 0,
-          droppedpos = 0;
-        for (let it = 0; it < items.length; it++) {
-          if (current == items[it]) {
-            currentpos = it;
-          }
-          if (i == items[it]) {
-            droppedpos = it;
-          }
-        }
-        if (currentpos < droppedpos) {
-          i.parentNode.insertBefore(current, i.nextSibling);
-        } else {
-          i.parentNode.insertBefore(current, i);
-        }
-      }
-    };
+    if (posY >= boxCenterY) result = refer_card;
   }
+
+  return result;
 }
+
+// Добавляем обработчики событий для касаний на мобильных устройствах
+
+let touchX, touchY;
+
+document.addEventListener("touchstart", (e) => {
+  const touch = e.touches[0];
+  touchX = touch.clientX;
+  touchY = touch.clientY;
+});
+
+document.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  const moveX = touch.clientX - touchX;
+  const moveY = touch.clientY - touchY;
+
+  // Сдвигаем перетаскиваемый элемент
+  if (dragging) {
+    dragging.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  }
+
+  touchX = touch.clientX;
+  touchY = touch.clientY;
+});
+
+document.addEventListener("touchend", (e) => {
+  if (dragging) {
+    dragging.style.transform = "";
+  }
+});
+
