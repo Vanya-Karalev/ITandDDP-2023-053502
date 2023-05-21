@@ -80,18 +80,19 @@ header {
     padding: 7px;
 }
 
-.form__password {
+.form__password, .form__repeat-password {
     display: flex;
     margin-bottom: 5px;
 }
 
-.form__input-password {
+.form__input-password, .form__input-repeat-password {
     display: flex;
     width: 96.5%;
     border: none;
     border: 1px solid gray;
     border-radius: 5px;
     padding: 7px;
+    margin-bottom: 15px;
 }
 
 .form__signup {
@@ -105,7 +106,7 @@ header {
     font-size: 16px;
     border-radius: 10px;
     width: 100%;
-    margin-top: 15px;
+    /* margin-top: 15px; */
 }
 
 .message {

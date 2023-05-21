@@ -6,6 +6,14 @@ import { createCookie } from './cookie.js'
 submitData.addEventListener('click', (e) => {
     let email = document.getElementById('username').value;
     let password = document.getElementById('password').value;
+    let repeat_password = document.getElementById('repeat_password').value;
+
+    if (repeat_password !== password) {
+        alert("Passwords don't match");
+        repeat_password = "";
+        password = "";
+        return;
+    }
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
