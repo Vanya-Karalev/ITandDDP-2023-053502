@@ -371,25 +371,3 @@ input[type="checkbox"]:checked {
     max-width: 300px;
   }
 }
-
-/* .current-notes__list li,
-.completed-notes__list li {
-  cursor: move;
-}
-
-.current-notes__list li:active,
-.completed-notes__list li:active {
-  cursor: grabbing;
-} */
-
-
-.draggable {
-    /* padding: 1rem;
-    background-color: white;
-    border: 1px solid black; */
-    cursor: move;
-}
-
-.draggable.dragging {
-    opacity: .5;
-}

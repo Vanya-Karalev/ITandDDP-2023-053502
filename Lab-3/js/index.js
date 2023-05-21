@@ -83,13 +83,11 @@ onValue(databaseRef, (snapshot) => {
   const data = snapshot.val();
   if (data) {
     const todoKey = Object.keys(data)[0];
-    // console.log(data[todoKey]);
     todoList = data[todoKey];
     displayCurrentMessages();
     displayCompletedMessages();
   }
 });
-
 
 function CreateNewTodo() {
   let newToDo = {
@@ -124,8 +122,6 @@ function CreateNewTodo() {
         console.log(error);
         alert("Failed to remove old todo data from database.");
     });
-
-
 
   noteTitle.value = "";
   noteInfo.value = "";
@@ -453,13 +449,6 @@ function GetInfo(event) {
 
 
 
-
-
-
-
-
-
-
 const columns = document.querySelectorAll(".current-notes__list");
 
 let dragging = null;
@@ -471,6 +460,7 @@ document.addEventListener("dragstart", (e) => {
 
 document.addEventListener("dragend", (e) => {
   dragging.classList.remove("dragging");
+  UpdateDragAndDrop();
   dragging = null;
 });
 
@@ -504,33 +494,48 @@ function getNewPosition(column, posY) {
   return result;
 }
 
-// Добавляем обработчики событий для касаний на мобильных устройствах
 
-let touchX, touchY;
+function UpdateDragAndDrop() {
+    let dropped = [];
+  
+    // Get the current TODO items from the innerHTML of todoCurrent
+    const currentItems = Array.from(todoCurrent.children);
+  
+    // Iterate over the current items and extract the necessary data
+    currentItems.forEach((item) => {
+      const title = item.querySelector(".current-main__left__title").textContent;
+      const checked = item.querySelector(".current-main__left__checkbox").checked;
+      const info = item.querySelector(".current-note__info__text").textContent;
+      let date = item.querySelector(".current-main__right__date").textContent;
+  
+      // Validate and extract the date in the format "YYYY-MM-DD"
+      const dateRegex = /\d{4}-\d{2}-\d{2}/;
+      const match = date.match(dateRegex);
+      date = match ? match[0] : ""; // If match is found, assign the matched date, otherwise assign an empty string
 
-document.addEventListener("touchstart", (e) => {
-  const touch = e.touches[0];
-  touchX = touch.clientX;
-  touchY = touch.clientY;
-});
+      // Create a new TODO object and add it to the dropped array
+      const todo = {
+        checked: checked,
+        noteDate: date,
+        noteInfo: info,
+        noteTitle: title,
+      };
+      dropped.push(todo);
+    });
 
-document.addEventListener("touchmove", (e) => {
-  const touch = e.touches[0];
-  const moveX = touch.clientX - touchX;
-  const moveY = touch.clientY - touchY;
-
-  // Сдвигаем перетаскиваемый элемент
-  if (dragging) {
-    dragging.style.transform = `translate(${moveX}px, ${moveY}px)`;
-  }
-
-  touchX = touch.clientX;
-  touchY = touch.clientY;
-});
-
-document.addEventListener("touchend", (e) => {
-  if (dragging) {
-    dragging.style.transform = "";
-  }
-});
-
+    const databaseRef = ref(database, `todos/${userId}`);
+        remove(databaseRef).then(() => {
+            push(databaseRef, dropped)
+            .then(() => {
+                displayCurrentMessages();
+                displayCompletedMessages();
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("Failed to save todo to database.");
+            });
+        }).catch((error) => {
+            console.log(error);
+            alert("Failed to remove old todo data from database.");
+        });
+}
