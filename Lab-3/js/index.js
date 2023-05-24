@@ -102,7 +102,7 @@ function CreateNewTodo() {
     return;
   }
 
-  todoList.unshift(newToDo);
+  todoList.push(newToDo);
 //   displayCurrentMessages();
 //   displayCompletedMessages();
 //   localStorage.setItem("todo", JSON.stringify(todoList));
@@ -346,8 +346,8 @@ function editCurrentTask(event) {
         remove(databaseRef).then(() => {
             push(databaseRef, todoList)
             .then(() => {
-                // displayCurrentMessages();
-                // displayCompletedMessages();
+                displayCurrentMessages();
+                displayCompletedMessages();
             })
             .catch((error) => {
                 console.log(error);
@@ -358,8 +358,8 @@ function editCurrentTask(event) {
             alert("Failed to remove old todo data from database.");
         });
     }
-    displayCurrentMessages();
-    displayCompletedMessages();
+    // displayCurrentMessages();
+    // displayCompletedMessages();
     Editmodal.style.display = "none";
   });
 }
@@ -398,8 +398,8 @@ function editCompletedTask(event) {
         remove(databaseRef).then(() => {
             push(databaseRef, todoList)
             .then(() => {
-                // displayCurrentMessages();
-                // displayCompletedMessages();
+                displayCurrentMessages();
+                displayCompletedMessages();
             })
             .catch((error) => {
                 console.log(error);
@@ -410,8 +410,8 @@ function editCompletedTask(event) {
             alert("Failed to remove old todo data from database.");
         });
     }
-    displayCurrentMessages();
-    displayCompletedMessages();
+    // displayCurrentMessages();
+    // displayCompletedMessages();
     Editmodal.style.display = "none";
   });
 }
